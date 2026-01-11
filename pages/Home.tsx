@@ -271,7 +271,7 @@ const Home: React.FC = () => {
                 ))}
               </ul>
 
-              <Button variant="whatsapp" className="bg-white text-teal-900 hover:bg-teal-50 shadow-none border-0 w-full sm:w-auto text-sm sm:text-base" onClick={() => openBooking('Home Collection Request')}>
+              <Button variant="whatsapp" className="!bg-white !text-teal-900 hover:!bg-teal-50 shadow-none border-0 w-full sm:w-auto text-sm sm:text-base font-bold" onClick={() => openBooking('Home Collection Request')}>
                 Book Home Sample Pickup
               </Button>
             </div>
