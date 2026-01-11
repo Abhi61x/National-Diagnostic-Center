@@ -1,0 +1,78 @@
+import React, { useState } from 'react';
+import { PACKAGES, CONTACT_INFO } from '../constants';
+import PackageCard from '../components/PackageCard';
+import Button from '../components/Button';
+import { Search } from 'lucide-react';
+
+const Packages: React.FC = () => {
+  const [filter, setFilter] = useState<string>('All');
+  const categories = ['All', 'Full Body Checkup', 'Blood Test', 'Preventive Care'];
+
+  const filteredPackages = filter === 'All' 
+    ? PACKAGES 
+    : PACKAGES.filter(p => p.category === filter);
+
+  return (
+    <div className="bg-slate-50 min-h-screen pb-20">
+      {/* Header */}
+      <div className="bg-white border-b border-slate-100 pt-16 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl font-bold text-slate-900 mb-4">Tests & Health Packages</h1>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Choose from our wide range of diagnostic tests and preventive health checkups designed for every age group.
+          </p>
+        </div>
+      </div>
+
+      {/* Filters & Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        {/* Category Tabs */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          {categories.map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat)}
+              className={`px-6 py-2 rounded-full font-medium transition-all ${
+                filter === cat 
+                  ? 'bg-primary text-white shadow-lg shadow-primary/30' 
+                  : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredPackages.map(pkg => (
+            <PackageCard key={pkg.id} pkg={pkg} />
+          ))}
+        </div>
+
+        {/* Custom Requirement CTA */}
+        <div className="mt-20 bg-gradient-to-r from-teal-500 to-emerald-600 rounded-2xl p-8 md:p-12 text-center text-white shadow-xl relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+          <div className="relative z-10">
+            <h2 className="text-3xl font-bold mb-4">Didn't find what you are looking for?</h2>
+            <p className="text-emerald-50 mb-8 max-w-2xl mx-auto">
+              We offer over 500+ individual pathology tests. Upload your prescription or call us to get a quote.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button variant="whatsapp" className="bg-white text-emerald-700 hover:bg-emerald-50 shadow-none" onClick={() => window.open(`https://wa.me/${CONTACT_INFO.whatsapp}?text=Hi, do you have this test?`, '_blank')}>
+                Chat on WhatsApp
+              </Button>
+              <a href={`tel:${CONTACT_INFO.phone}`}>
+                <Button variant="call" className="bg-emerald-800 hover:bg-emerald-900 border border-emerald-700">
+                  Call {CONTACT_INFO.phone}
+                </Button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Packages;
