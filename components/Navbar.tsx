@@ -21,20 +21,20 @@ const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20">
+        <div className="flex justify-between h-16 sm:h-20">
           
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+            <Link to="/" className="flex items-center gap-2 sm:gap-3" onClick={() => setIsOpen(false)}>
               <LazyImage 
                 src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
                 alt="National Diagnostic Center Logo" 
-                className="w-12 h-12 rounded-full border border-slate-100 shadow-sm"
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-100 shadow-sm"
                 imgClassName="rounded-full"
               />
               <div className="flex flex-col">
-                <span className="text-xl font-bold text-slate-900 leading-none">National</span>
-                <span className="text-xs font-medium text-slate-500 tracking-wider">DIAGNOSTIC CENTER</span>
+                <span className="text-lg sm:text-xl font-bold text-slate-900 leading-none">National</span>
+                <span className="text-[10px] sm:text-xs font-medium text-slate-500 tracking-wider">DIAGNOSTIC CENTER</span>
               </div>
             </Link>
           </div>
@@ -70,7 +70,7 @@ const Navbar: React.FC = () => {
               onClick={() => setIsOpen(!isOpen)}
               className="text-slate-600 hover:text-primary focus:outline-none p-2"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
