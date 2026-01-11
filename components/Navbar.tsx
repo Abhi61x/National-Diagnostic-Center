@@ -18,6 +18,9 @@ const Navbar: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  // Calculate top offset for mobile menu based on navbar height (h-16 on mobile/sm)
+  const mobileMenuTopClass = "top-16 sm:top-20";
+
   return (
     <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,30 +79,30 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100 absolute w-full left-0 shadow-lg">
-          <div className="px-4 pt-2 pb-6 space-y-2">
+        <div className={`md:hidden fixed inset-x-0 ${mobileMenuTopClass} bottom-0 bg-white/98 backdrop-blur-md z-40 overflow-y-auto border-t border-slate-100`}>
+          <div className="px-4 py-6 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-3 py-4 rounded-lg text-base font-medium ${
+                className={`block px-4 py-4 rounded-xl text-lg font-medium transition-all ${
                   isActive(link.path)
                     ? 'bg-primary/10 text-primary'
-                    : 'text-slate-600 hover:bg-slate-50'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
               >
                 {link.name}
               </Link>
             ))}
-            <div className="pt-4 mt-4 border-t border-slate-100">
+            <div className="pt-6 mt-6 border-t border-slate-100">
                <a 
                  href={`tel:${CONTACT_INFO.phone}`}
-                 className="flex w-full items-center justify-center gap-2 bg-primary text-white py-3 rounded-xl font-semibold active:scale-95 transition-transform"
+                 className="flex w-full items-center justify-center gap-3 bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/30 active:scale-95 transition-transform"
                >
-                 <Phone size={20} />
+                 <Phone size={22} />
                  Call Now: {CONTACT_INFO.phone}
                </a>
             </div>
