@@ -442,7 +442,8 @@ const Home: React.FC = () => {
              Don't ignore your health. Fast, accurate, and trusted diagnostic services are just a click away.
            </p>
            <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <Button variant="whatsapp" className="bg-white text-green-600 hover:bg-slate-50" onClick={() => openBooking('Bottom CTA Booking')}>
+             {/* Force text color to be WhatsApp green against white background */}
+             <Button variant="whatsapp" className="bg-white !text-[#25D366] hover:bg-slate-50" onClick={() => openBooking('Bottom CTA Booking')}>
                Book via WhatsApp
              </Button>
              <a href={`tel:${CONTACT_INFO.phone}`}>

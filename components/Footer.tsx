@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { TestTube2, MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
+import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
 const Footer: React.FC = () => {
@@ -11,10 +11,12 @@ const Footer: React.FC = () => {
           
           {/* Brand Info */}
           <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
-                <TestTube2 size={20} />
-              </div>
+            <div className="flex items-center gap-3 mb-6">
+              <img 
+                src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
+                alt="National Diagnostic Center Logo" 
+                className="w-10 h-10 rounded-full object-cover border border-slate-700"
+              />
               <span className="text-xl font-bold text-white">National Diagnostic Center</span>
             </div>
             <p className="text-slate-400 mb-6 leading-relaxed">

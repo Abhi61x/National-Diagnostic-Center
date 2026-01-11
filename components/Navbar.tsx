@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, TestTube2, Phone } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 
 const Navbar: React.FC = () => {
@@ -24,10 +24,12 @@ const Navbar: React.FC = () => {
           
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
-              <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
-                <TestTube2 size={24} strokeWidth={2.5} />
-              </div>
+            <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
+              <img 
+                src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
+                alt="National Diagnostic Center Logo" 
+                className="w-12 h-12 rounded-full object-cover border border-slate-100 shadow-sm"
+              />
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-slate-900 leading-none">National</span>
                 <span className="text-xs font-medium text-slate-500 tracking-wider">DIAGNOSTIC CENTER</span>
