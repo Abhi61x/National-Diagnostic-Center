@@ -2,6 +2,7 @@ import React from 'react';
 import { Users, Activity, Award, CheckCircle } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
+import LazyImage from '../components/LazyImage';
 
 const About: React.FC = () => {
   return (
@@ -23,10 +24,11 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           <div>
-            <img 
+            <LazyImage 
               src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
               alt="Lab equipment" 
-              className="rounded-3xl shadow-2xl"
+              className="rounded-3xl shadow-2xl h-[400px]"
+              imgClassName="rounded-3xl"
             />
           </div>
           <div>

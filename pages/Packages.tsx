@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PACKAGES, CONTACT_INFO } from '../constants';
 import PackageCard from '../components/PackageCard';
+import PackageCardSkeleton from '../components/PackageCardSkeleton';
 import Button from '../components/Button';
 import { Search } from 'lucide-react';
 
 const Packages: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
+  const [isLoading, setIsLoading] = useState(true);
+  
   const categories = ['All', 'Full Body Checkup', 'Blood Test', 'Preventive Care'];
+
+  // Simulate loading effect for better UX
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, [filter]);
 
   const filteredPackages = filter === 'All' 
     ? PACKAGES 
@@ -45,9 +57,14 @@ const Packages: React.FC = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPackages.map(pkg => (
-            <PackageCard key={pkg.id} pkg={pkg} />
-          ))}
+          {isLoading 
+            ? Array(6).fill(0).map((_, i) => (
+                <PackageCardSkeleton key={i} />
+              ))
+            : filteredPackages.map(pkg => (
+                <PackageCard key={pkg.id} pkg={pkg} />
+              ))
+          }
         </div>
 
         {/* Custom Requirement CTA */}

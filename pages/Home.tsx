@@ -10,6 +10,7 @@ import { PACKAGES, OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import PackageCard from '../components/PackageCard';
 import TestimonialSlider from '../components/TestimonialSlider';
+import LazyImage from '../components/LazyImage';
 import { useBooking } from '../contexts/BookingContext';
 
 const Home: React.FC = () => {
@@ -56,10 +57,10 @@ const Home: React.FC = () => {
             
             <div className="relative mt-4 lg:mt-0 order-1 lg:order-2">
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl transform translate-x-10 translate-y-10"></div>
-              <img 
+              <LazyImage 
                 src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                 alt="Lab Technician" 
-                className="relative rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-4 border-white z-10 w-full object-cover h-[280px] sm:h-[400px] lg:h-[500px]"
+                className="relative rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-4 border-white z-10 w-full h-[280px] sm:h-[400px] lg:h-[500px]"
               />
               {/* Floating Card - Adjusted for mobile */}
               <div className="absolute bottom-4 left-4 lg:-left-8 bg-white p-3 lg:p-4 rounded-xl shadow-xl z-20 flex items-center gap-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 max-w-[200px] lg:max-w-none">
@@ -275,10 +276,11 @@ const Home: React.FC = () => {
               </Button>
             </div>
             <div className="relative h-[250px] lg:h-[500px] hidden md:block">
-               <img 
+               <LazyImage 
                  src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151189/AdobeStock_109612366_ydmiyv.jpg"
                  alt="Home collection kit"
-                 className="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-teal-700/50"
+                 className="absolute inset-0 w-full h-full rounded-3xl shadow-2xl border-4 border-teal-700/50"
+                 imgClassName="rounded-3xl"
                />
             </div>
           </div>
@@ -362,12 +364,12 @@ const Home: React.FC = () => {
                  </div>
                </div>
                <div className="bg-slate-100 h-48 lg:h-auto relative">
-                  <img 
+                  <LazyImage 
                     src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151062/MedTech-Round-Table-The-ROI-of-Surgical-Digital-Transformation-Resize_yvsxpg.jpg" 
                     alt="Digital Report on Tablet" 
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6 lg:p-8">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-6 lg:p-8 z-10">
                     <p className="text-white font-medium text-sm lg:text-base">Secure, Private & Confidential Reports</p>
                   </div>
                </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
+import LazyImage from './LazyImage';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,10 +26,11 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center gap-3" onClick={() => setIsOpen(false)}>
-              <img 
+              <LazyImage 
                 src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
                 alt="National Diagnostic Center Logo" 
-                className="w-12 h-12 rounded-full object-cover border border-slate-100 shadow-sm"
+                className="w-12 h-12 rounded-full border border-slate-100 shadow-sm"
+                imgClassName="rounded-full"
               />
               <div className="flex flex-col">
                 <span className="text-xl font-bold text-slate-900 leading-none">National</span>

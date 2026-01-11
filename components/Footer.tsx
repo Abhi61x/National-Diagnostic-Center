@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Instagram, Twitter } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
+import LazyImage from './LazyImage';
 
 const Footer: React.FC = () => {
   return (
@@ -12,10 +13,11 @@ const Footer: React.FC = () => {
           {/* Brand Info */}
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <img 
+              <LazyImage 
                 src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
                 alt="National Diagnostic Center Logo" 
-                className="w-10 h-10 rounded-full object-cover border border-slate-700"
+                className="w-10 h-10 rounded-full border border-slate-700"
+                imgClassName="rounded-full"
               />
               <span className="text-xl font-bold text-white">National Diagnostic Center</span>
             </div>
