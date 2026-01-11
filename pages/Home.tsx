@@ -8,6 +8,7 @@ import {
 import { PACKAGES, OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import PackageCard from '../components/PackageCard';
+import ServiceVisualizer from '../components/ServiceVisualizer';
 import { useBooking } from '../contexts/BookingContext';
 
 const Home: React.FC = () => {
@@ -124,6 +125,9 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* NEW: AI Service Visualization */}
+      <ServiceVisualizer />
 
       {/* 4️⃣ Popular Test Packages */}
       <section id="packages" className="py-12 lg:py-20 bg-slate-50">
