@@ -11,6 +11,8 @@ interface ServiceImage {
   error: boolean;
 }
 
+const STORAGE_KEY = 'lab_website_ai_images';
+
 const ServiceVisualizer: React.FC = () => {
   const [services, setServices] = useState<ServiceImage[]>([
     {
@@ -39,6 +41,26 @@ const ServiceVisualizer: React.FC = () => {
     }
   ]);
 
+  // Load from local storage on mount to prevent regeneration
+  useEffect(() => {
+    try {
+      const cachedData = localStorage.getItem(STORAGE_KEY);
+      if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        setServices(prev => prev.map(service => {
+          const cachedService = parsedData.find((p: ServiceImage) => p.id === service.id);
+          // Only restore if we have an image URL
+          if (cachedService && cachedService.imageUrl) {
+            return { ...service, imageUrl: cachedService.imageUrl };
+          }
+          return service;
+        }));
+      }
+    } catch (error) {
+      console.warn("Failed to load images from cache", error);
+    }
+  }, []);
+
   const generateImage = async (index: number) => {
     // Prevent multiple calls if already loading or has image
     if (services[index].loading || services[index].imageUrl) return;
@@ -61,12 +83,10 @@ const ServiceVisualizer: React.FC = () => {
 
       let imageUrl: string | null = null;
       
-      // The response structure for image generation often returns parts with inlineData
       if (response.candidates?.[0]?.content?.parts) {
         for (const part of response.candidates[0].content.parts) {
           if (part.inlineData) {
             const base64EncodeString = part.inlineData.data;
-            // Assuming PNG or using the mimeType if available (though SDK types might vary)
             const mimeType = part.inlineData.mimeType || 'image/png';
             imageUrl = `data:${mimeType};base64,${base64EncodeString}`;
             break;
@@ -75,7 +95,16 @@ const ServiceVisualizer: React.FC = () => {
       }
 
       if (imageUrl) {
-        setServices(prev => prev.map((s, i) => i === index ? { ...s, imageUrl, loading: false } : s));
+        setServices(prev => {
+          const newState = prev.map((s, i) => i === index ? { ...s, imageUrl, loading: false } : s);
+          // Save to local storage
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(newState));
+          } catch (e) {
+            console.warn("Failed to save image to cache (likely quota exceeded)", e);
+          }
+          return newState;
+        });
       } else {
         throw new Error("No image data found in response");
       }
@@ -87,8 +116,8 @@ const ServiceVisualizer: React.FC = () => {
   };
 
   const handleGenerateAll = () => {
-    services.forEach((_, index) => {
-        if (!services[index].imageUrl) {
+    services.forEach((service, index) => {
+        if (!service.imageUrl) {
             generateImage(index);
         }
     });
@@ -112,7 +141,7 @@ const ServiceVisualizer: React.FC = () => {
              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors shadow-lg shadow-indigo-200"
           >
             <Sparkles size={18} />
-            Generate Previews
+            {services.some(s => s.imageUrl) ? 'Generate Missing Previews' : 'Generate Previews'}
           </button>
         </div>
 
@@ -169,6 +198,13 @@ const ServiceVisualizer: React.FC = () => {
                 <button
                     onClick={() => {
                         setServices(prev => prev.map((s, i) => i === index ? { ...s, imageUrl: null } : s));
+                        // Remove from cache if user manually refreshes
+                        try {
+                           const currentCache = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                           const newCache = currentCache.map((s: ServiceImage) => s.id === service.id ? { ...s, imageUrl: null } : s);
+                           localStorage.setItem(STORAGE_KEY, JSON.stringify(newCache));
+                        } catch(e) {}
+                        
                         setTimeout(() => generateImage(index), 100);
                     }}
                     className="absolute top-3 right-3 p-2 bg-black/40 hover:bg-black/60 text-white rounded-full backdrop-blur-md opacity-0 group-hover:opacity-100 transition-opacity"
