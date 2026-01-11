@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { 
   ShieldCheck, Microscope, Clock, MapPin, Star, 
   FileText, Home as HomeIcon, Award, Zap, CheckCircle2, 
-  Phone, ArrowRight, Percent, Activity, Users
+  Phone, ArrowRight, Percent, Activity, Users,
+  CalendarCheck, Truck
 } from 'lucide-react';
 import { PACKAGES, OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import PackageCard from '../components/PackageCard';
-import ServiceVisualizer from '../components/ServiceVisualizer';
+import TestimonialSlider from '../components/TestimonialSlider';
 import { useBooking } from '../contexts/BookingContext';
 
 const Home: React.FC = () => {
@@ -126,11 +127,68 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* NEW: AI Service Visualization */}
-      <ServiceVisualizer />
+      {/* NEW: How It Works Section */}
+      <section className="py-12 lg:py-20 bg-slate-50 border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12 lg:mb-16">
+            <span className="text-primary font-bold tracking-wider uppercase text-xs lg:text-sm">Process</span>
+            <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mt-2">How It Works</h2>
+            <p className="text-sm lg:text-base text-slate-600 mt-2">Get your health checkup done in 4 simple steps</p>
+          </div>
+
+          <div className="relative">
+            {/* Connecting Line (Desktop Only) */}
+            <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+              {[
+                { 
+                  step: "01", 
+                  title: "Book Appointment", 
+                  desc: "Call or WhatsApp us to schedule a home visit or lab walk-in.", 
+                  icon: CalendarCheck,
+                  color: "bg-blue-500"
+                },
+                { 
+                  step: "02", 
+                  title: "Sample Collection", 
+                  desc: "Our phlebotomist collects samples safely from your home.", 
+                  icon: Truck,
+                  color: "bg-teal-500"
+                },
+                { 
+                  step: "03", 
+                  title: "Lab Processing", 
+                  desc: "Samples are tested in our fully automated NABL compliant lab.", 
+                  icon: Microscope,
+                  color: "bg-indigo-500"
+                },
+                { 
+                  step: "04", 
+                  title: "Digital Report", 
+                  desc: "Receive accurate reports via WhatsApp & Email within 24 hours.", 
+                  icon: FileText,
+                  color: "bg-orange-500"
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="bg-white lg:bg-transparent rounded-xl p-6 lg:p-0 shadow-md lg:shadow-none relative group text-center lg:text-left">
+                  <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center text-white shadow-lg shadow-slate-200 mx-auto lg:mx-0 mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300`}>
+                    <item.icon size={26} />
+                    <div className="absolute -top-2 -right-2 bg-white text-slate-900 text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center border border-slate-100 shadow-sm">
+                      {item.step}
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 4️⃣ Popular Test Packages */}
-      <section id="packages" className="py-12 lg:py-20 bg-slate-50">
+      <section id="packages" className="py-12 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-end mb-8 lg:mb-10 gap-2 lg:gap-4">
             <div className="w-full md:w-auto">
@@ -159,7 +217,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 5️⃣ Why Choose Us */}
-      <section className="py-12 lg:py-20 bg-white">
+      <section className="py-12 lg:py-20 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-10 lg:mb-16">
             <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 mb-2 lg:mb-4">Why Families Trust Us</h2>
@@ -218,13 +276,24 @@ const Home: React.FC = () => {
             </div>
             <div className="relative h-[250px] lg:h-[500px] hidden md:block">
                <img 
-                 src="https://images.unsplash.com/photo-1584515933487-9bfa05d64571?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                 src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151189/AdobeStock_109612366_ydmiyv.jpg"
                  alt="Home collection kit"
                  className="absolute inset-0 w-full h-full object-cover rounded-3xl shadow-2xl border-4 border-teal-700/50"
                />
             </div>
           </div>
         </div>
+      </section>
+
+      {/* NEW: Testimonials Section */}
+      <section className="py-12 lg:py-20 bg-slate-50">
+         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-10">
+               <h2 className="text-2xl lg:text-3xl font-bold text-slate-900">What Our Patients Say</h2>
+               <p className="text-slate-600 mt-2">Real reviews from people who trust us with their health</p>
+            </div>
+            <TestimonialSlider />
+         </div>
       </section>
 
       {/* 7️⃣ Offers & Promotions */}
@@ -294,7 +363,7 @@ const Home: React.FC = () => {
                </div>
                <div className="bg-slate-100 h-48 lg:h-auto relative">
                   <img 
-                    src="https://images.unsplash.com/photo-1576091160550-217358c7e618?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                    src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151062/MedTech-Round-Table-The-ROI-of-Surgical-Digital-Transformation-Resize_yvsxpg.jpg" 
                     alt="Digital Report on Tablet" 
                     className="absolute inset-0 w-full h-full object-cover"
                   />
