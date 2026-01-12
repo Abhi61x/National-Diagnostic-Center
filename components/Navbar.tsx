@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
+    <nav className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 sm:h-20">
 
@@ -103,17 +103,17 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu (Portal to body) */}
       {isOpen && createPortal(
-        <div className="md:hidden fixed top-16 sm:top-20 left-0 right-0 bottom-0 z-[60] bg-white/98 backdrop-blur-md overflow-y-auto border-t border-slate-100 shadow-xl animate-in slide-in-from-right duration-300">
+        <div className="md:hidden fixed top-16 sm:top-20 left-0 right-0 bottom-0 z-[60] bg-white overflow-y-auto border-t border-slate-100 shadow-xl animate-in slide-in-from-right duration-300">
           <div className="px-4 py-6 space-y-3">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.path}
                 onClick={() => setIsOpen(false)}
-                className={`block px-4 py-4 rounded-xl text-lg font-medium transition-all ${
+                className={`block px-5 py-4 rounded-xl text-lg font-bold transition-all ${
                   isActive(link.path)
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-slate-700 hover:bg-slate-50'
+                    ? 'bg-primary text-white shadow-md shadow-primary/20'
+                    : 'text-slate-700 hover:bg-slate-50 hover:text-primary'
                 }`}
               >
                 {link.name}
@@ -123,7 +123,7 @@ const Navbar: React.FC = () => {
             <div className="pt-6 mt-6 border-t border-slate-100">
               <a
                 href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center justify-center gap-3 w-full bg-primary text-white py-4 rounded-xl font-bold shadow-lg shadow-primary/30 active:scale-95 transition-transform"
+                className="flex items-center justify-center gap-3 w-full bg-slate-900 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-transform"
               >
                 <Phone size={22} />
                 Call Now: {CONTACT_INFO.phone}
