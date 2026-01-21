@@ -34,7 +34,7 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center mb-16 sm:mb-24">
           <div>
             <LazyImage 
-              src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010359/IMG_2512_nevhxr.jpg" 
+              src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010363/IMG_8796_qna75i.jpg" 
               alt="Lab equipment and staff" 
               className="rounded-3xl shadow-2xl h-[300px] sm:h-[450px]"
               imgClassName="rounded-3xl object-cover"
