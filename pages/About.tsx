@@ -1,10 +1,17 @@
 import React from 'react';
-import { Users, Activity, Award, CheckCircle } from 'lucide-react';
+import { Users, Activity, Award } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import LazyImage from '../components/LazyImage';
 
 const About: React.FC = () => {
+  const galleryImages = [
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010359/IMG_1911_ehywqs.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010360/IMG_9741_vjmgtl.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010362/IMG_2502_v54han.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010363/IMG_8796_qna75i.jpg",
+  ];
+
   return (
     <div className="bg-white">
       {/* Header */}
@@ -22,13 +29,15 @@ const About: React.FC = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center mb-12 sm:mb-20">
+        
+        {/* Story Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center mb-16 sm:mb-24">
           <div>
             <LazyImage 
-              src="https://images.unsplash.com/photo-1579154204601-01588f351e67?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
-              alt="Lab equipment" 
-              className="rounded-3xl shadow-2xl h-[250px] sm:h-[400px]"
-              imgClassName="rounded-3xl"
+              src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010359/IMG_2512_nevhxr.jpg" 
+              alt="Lab equipment and staff" 
+              className="rounded-3xl shadow-2xl h-[300px] sm:h-[450px]"
+              imgClassName="rounded-3xl object-cover"
             />
           </div>
           <div>
@@ -51,6 +60,43 @@ const About: React.FC = () => {
                </div>
             </div>
           </div>
+        </div>
+
+        {/* Video Section */}
+        <div className="mb-20 sm:mb-28">
+           <div className="text-center mb-8">
+              <h2 className="text-xl sm:text-3xl font-bold text-slate-900">See Our Lab in Action</h2>
+              <p className="text-slate-600 mt-2">A glimpse into our daily operations and standards</p>
+           </div>
+           <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black aspect-video max-w-5xl mx-auto border-4 border-white">
+              <video 
+                 controls 
+                 className="w-full h-full object-cover"
+                 preload="metadata"
+                 poster="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010359/IMG_1911_ehywqs.jpg"
+              >
+                 <source src="https://res.cloudinary.com/djhgkdqwl/video/upload/v1769010364/IMG_0736_az5pnn.mp4" type="video/mp4" />
+                 Your browser does not support the video tag.
+              </video>
+           </div>
+        </div>
+
+        {/* Gallery Section */}
+        <div className="mb-20 sm:mb-28">
+            <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-8 sm:mb-12 text-center">Our Advanced Facilities</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {galleryImages.map((img, idx) => (
+                    <div key={idx} className="group relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                        <LazyImage 
+                            src={img} 
+                            alt={`Lab facility view ${idx + 1}`} 
+                            className="w-full h-full"
+                            imgClassName="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                    </div>
+                ))}
+            </div>
         </div>
 
         {/* Values */}
