@@ -3,6 +3,7 @@ import { PACKAGES, CONTACT_INFO } from '../constants';
 import PackageCard from '../components/PackageCard';
 import PackageCardSkeleton from '../components/PackageCardSkeleton';
 import Button from '../components/Button';
+import TestimonialSlider from '../components/TestimonialSlider';
 import { Search } from 'lucide-react';
 
 const Packages: React.FC = () => {
@@ -65,6 +66,15 @@ const Packages: React.FC = () => {
                 <PackageCard key={pkg.id} pkg={pkg} />
               ))
           }
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="mt-20 sm:mt-28">
+           <div className="text-center mb-8">
+              <h2 className="text-xl sm:text-3xl font-bold text-slate-900">Why Patients Trust Us</h2>
+              <p className="text-slate-600 mt-2">Real feedback from people who chose our packages</p>
+           </div>
+           <TestimonialSlider />
         </div>
 
         {/* Custom Requirement CTA */}
