@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
             onClick={() => setIsOpen(false)}
           >
             <LazyImage
-              src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg"
+              src="https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg"
               alt="National Diagnostic Center Logo"
               className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-slate-100 shadow-sm"
               imgClassName="rounded-full"
@@ -63,19 +63,29 @@ const Navbar: React.FC = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                className={`text-sm font-medium transition-colors ${
-                  isActive(link.path)
-                    ? 'text-primary'
-                    : 'text-slate-600 hover:text-primary'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isActive(link.path);
+              return (
+                <Link
+                  key={link.name}
+                  to={link.path}
+                  className="group relative py-2"
+                >
+                  <span
+                    className={`text-sm font-medium transition-colors duration-200 ${
+                      active ? 'text-primary' : 'text-slate-600 group-hover:text-primary'
+                    }`}
+                  >
+                    {link.name}
+                  </span>
+                  <span
+                    className={`absolute bottom-0 left-0 h-0.5 bg-primary transition-all duration-300 ease-out rounded-full ${
+                      active ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Desktop CTA */}

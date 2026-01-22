@@ -1,19 +1,59 @@
-import React from 'react';
-import { Users, Activity, Award } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, Activity, Award, X, ZoomIn } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import LazyImage from '../components/LazyImage';
 
 const About: React.FC = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setSelectedImage(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const galleryImages = [
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010359/IMG_1911_ehywqs.jpg",
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010360/IMG_9741_vjmgtl.jpg",
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010362/IMG_2502_v54han.jpg",
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010363/IMG_8796_qna75i.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769064941/IMG-20260122-WA0010_kzpkaq.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769064942/IMG_8337_y0xump.jpg",
   ];
 
   return (
-    <div className="bg-white">
+    <div className="bg-white relative">
+      {/* Image Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-4 right-4 p-2 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 rounded-full transition-colors z-50"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+            aria-label="Close modal"
+          >
+            <X size={24} />
+          </button>
+          <img 
+            src={selectedImage} 
+            alt="Facility Preview" 
+            className="max-w-full max-h-[90vh] rounded-lg shadow-2xl animate-in zoom-in-95 duration-300 object-contain"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking the image itself
+          />
+        </div>
+      )}
+
       {/* Header */}
       <div className="relative bg-slate-50 py-12 sm:py-20 lg:py-28 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-blue-50/50 skew-x-12 translate-x-20"></div>
@@ -84,16 +124,26 @@ const About: React.FC = () => {
         {/* Gallery Section */}
         <div className="mb-20 sm:mb-28">
             <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-8 sm:mb-12 text-center">Our Advanced Facilities</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {galleryImages.map((img, idx) => (
-                    <div key={idx} className="group relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                    <div 
+                      key={idx} 
+                      className="group relative h-64 sm:h-80 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer"
+                      onClick={() => setSelectedImage(img)}
+                    >
                         <LazyImage 
                             src={img} 
                             alt={`Lab facility view ${idx + 1}`} 
                             className="w-full h-full"
                             imgClassName="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                          <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <div className="bg-white/20 backdrop-blur-md p-3 rounded-full text-white border border-white/30">
+                              <ZoomIn size={32} />
+                            </div>
+                          </div>
+                        </div>
                     </div>
                 ))}
             </div>

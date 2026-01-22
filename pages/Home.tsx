@@ -4,7 +4,7 @@ import {
   ShieldCheck, Microscope, Clock, MapPin, Star, 
   FileText, Home as HomeIcon, Award, Zap, CheckCircle2, 
   Phone, ArrowRight, Percent, Activity, Users,
-  CalendarCheck, Truck
+  CalendarCheck, Truck, Stethoscope
 } from 'lucide-react';
 import { PACKAGES, OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
@@ -104,12 +104,13 @@ const Home: React.FC = () => {
             <p className="text-sm sm:text-base text-slate-600 mt-1 sm:mt-2">Everything you need for a complete health analysis</p>
           </div>
           
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4 lg:gap-6 justify-center">
             {[
               { title: "Blood Tests", icon: Microscope, desc: "CBC, Lipid, Thyroid & more", color: "text-blue-600", bg: "bg-blue-50" },
               { title: "Full Body Checkup", icon: Activity, desc: "Comprehensive health screening", color: "text-teal-600", bg: "bg-teal-50" },
               { title: "Preventive Care", icon: ShieldCheck, desc: "Diabetes & Heart health", color: "text-indigo-600", bg: "bg-indigo-50" },
               { title: "Home Collection", icon: HomeIcon, desc: "Free doorstep sample pickup", color: "text-orange-600", bg: "bg-orange-50" },
+              { title: "Doctor Consultation", icon: Stethoscope, desc: "Connect with expert doctors", color: "text-rose-600", bg: "bg-rose-50" },
             ].map((service, idx) => (
               <div key={idx} className="group p-4 sm:p-5 lg:p-6 rounded-2xl border border-slate-100 hover:shadow-lg transition-all duration-300 cursor-pointer flex items-center lg:block gap-4" onClick={() => openBooking(`Inquiry: ${service.title}`)}>
                 <div className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 ${service.bg} ${service.color} rounded-xl flex items-center justify-center lg:mb-4 group-hover:scale-110 transition-transform shrink-0`}>

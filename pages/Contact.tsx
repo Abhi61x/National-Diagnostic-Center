@@ -1,16 +1,28 @@
-import React from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Phone, Mail, Clock, Stethoscope, User } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 
 const Contact: React.FC = () => {
+  const [formType, setFormType] = useState<'patient' | 'doctor'>('patient');
+
+  // Generic handler for form submission simulation
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const message = formType === 'patient' 
+      ? "Hi, I'm contacting you from the website regarding an inquiry."
+      : "Hi, I am a doctor looking to refer a patient for diagnostics.";
+    
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen">
       {/* Header */}
       <div className="bg-white border-b border-slate-100 py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-3 sm:mb-4">Contact Us</h1>
-          <p className="text-base sm:text-lg text-slate-600">We are here to help. Reach out to us for bookings, reports, or queries.</p>
+          <p className="text-base sm:text-lg text-slate-600">We are here to help. Reach out to us for bookings, reports, or referrals.</p>
         </div>
       </div>
 
@@ -61,8 +73,110 @@ const Contact: React.FC = () => {
 
           {/* Map & Form */}
           <div className="lg:col-span-2 space-y-6 sm:space-y-8">
-            {/* Map */}
-            <div className="bg-white p-2 rounded-2xl shadow-sm border border-slate-100 h-[300px] sm:h-[400px]">
+            
+            {/* Visual Form */}
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+              
+              {/* Tabs */}
+              <div className="flex p-1 bg-slate-100 rounded-xl mb-6 sm:mb-8">
+                <button
+                  onClick={() => setFormType('patient')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                    formType === 'patient' 
+                      ? 'bg-white text-slate-900 shadow-sm' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <User size={18} />
+                  Patient Inquiry
+                </button>
+                <button
+                  onClick={() => setFormType('doctor')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg text-sm font-semibold transition-all ${
+                    formType === 'doctor' 
+                      ? 'bg-white text-primary shadow-sm' 
+                      : 'text-slate-500 hover:text-slate-700'
+                  }`}
+                >
+                  <Stethoscope size={18} />
+                  Doctor Referral
+                </button>
+              </div>
+
+              {formType === 'patient' ? (
+                /* Patient Form */
+                <form className="space-y-4" onSubmit={handleFormSubmit}>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">Send us a Message</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Your Name</label>
+                      <input type="text" className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Enter name" />
+                    </div>
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+                      <input type="tel" className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Enter phone" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Message</label>
+                    <textarea rows={4} className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="How can we help you?"></textarea>
+                  </div>
+                  <div className="pt-2">
+                    <Button variant="whatsapp" type="submit" className="text-sm sm:text-base">
+                      Send Inquiry via WhatsApp
+                    </Button>
+                  </div>
+                </form>
+              ) : (
+                /* Doctor Referral Form */
+                <form className="space-y-4" onSubmit={handleFormSubmit}>
+                   <div className="bg-sky-50 border border-sky-100 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-sky-800">
+                        <strong>Doctors:</strong> Use this form to refer patients for diagnostic tests. We ensure priority processing for referred cases.
+                      </p>
+                   </div>
+                   
+                   <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 mb-4">Doctor Details</h3>
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Doctor Name</label>
+                      <input type="text" required className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Dr. Name" />
+                    </div>
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Clinic/Hospital</label>
+                      <input type="text" required className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Clinic Name" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-2 mb-4 mt-6">Patient Details</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Patient Name</label>
+                      <input type="text" required className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Patient Name" />
+                    </div>
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Patient Phone</label>
+                      <input type="tel" required className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Patient Phone" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Tests Required / Clinical Notes</label>
+                    <textarea required rows={3} className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="List required tests..."></textarea>
+                  </div>
+                  <div className="pt-2">
+                    <Button variant="primary" type="submit" className="text-sm sm:text-base w-full md:w-auto">
+                      Submit Referral
+                    </Button>
+                    <p className="text-[10px] sm:text-xs text-slate-400 mt-2">
+                      Clicking submit will open WhatsApp to send these details to our center manager.
+                    </p>
+                  </div>
+                </form>
+              )}
+            </div>
+
+             {/* Map */}
+             <div className="bg-white p-2 rounded-2xl shadow-sm border border-slate-100 h-[300px]">
               <iframe 
                 src={CONTACT_INFO.mapUrl}
                 width="100%" 
@@ -75,34 +189,6 @@ const Contact: React.FC = () => {
               ></iframe>
             </div>
 
-            {/* Visual Form - CTA to WhatsApp */}
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
-              <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-4 sm:mb-6">Send us a Message</h3>
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); window.open(`https://wa.me/${CONTACT_INFO.whatsapp}`, '_blank'); }}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Name</label>
-                    <input type="text" className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Your Name" />
-                  </div>
-                  <div>
-                    <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Phone</label>
-                    <input type="tel" className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Your Phone" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs sm:text-sm font-medium text-slate-700 mb-1">Message</label>
-                  <textarea rows={4} className="w-full px-4 py-2 text-sm sm:text-base rounded-lg border border-slate-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="How can we help you?"></textarea>
-                </div>
-                <div className="pt-2">
-                  <Button variant="whatsapp" type="submit" className="text-sm sm:text-base">
-                    Send via WhatsApp
-                  </Button>
-                  <p className="text-[10px] sm:text-xs text-slate-400 mt-2">
-                    Note: Clicking send will open WhatsApp with your message.
-                  </p>
-                </div>
-              </form>
-            </div>
           </div>
         </div>
       </div>

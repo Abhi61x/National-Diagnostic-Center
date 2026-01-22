@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <LazyImage 
-                src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1768151471/508002437_516683774863954_1954367889223686531_n_z7zaaz.jpg" 
+                src="https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg" 
                 alt="National Diagnostic Center Logo" 
                 className="w-10 h-10 rounded-full border border-slate-700"
                 imgClassName="rounded-full"
@@ -41,7 +41,7 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-white font-semibold text-lg mb-6">Quick Links</h3>
             <ul className="space-y-4">
-              {['Home', 'About Us', 'Tests & Packages', 'Offers', 'Contact'].map((item) => (
+              {['Home', 'About Us', 'Tests & Packages', 'Offers', 'Contact', 'FAQ'].map((item) => (
                 <li key={item}>
                   <Link to={item === 'Home' ? '/' : `/${item.toLowerCase().replace(/ & /g, '-').replace(/ /g, '-')}`} className="hover:text-primary transition-colors">
                     {item}
