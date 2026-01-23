@@ -60,6 +60,11 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a href="/sitemap.xml" target="_blank" className="hover:text-primary transition-colors">
+                  Sitemap
+                </a>
+              </li>
             </ul>
           </div>
 
