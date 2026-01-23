@@ -13,7 +13,7 @@ const Offers: React.FC = () => {
       <SEO 
         title="Special Health Offers & Discounts | National Diagnostic Center"
         description="Grab limited-time discounts on blood tests and health checkup packages. Family wellness discounts, early bird specials, and more in Lucknow."
-        keywords="Pathology Lab Offers, Blood Test Discount, Health Checkup Deals, Medical Test Coupons"
+        keywords="Pathology Lab Offers, Blood Test Discount, Health Checkup Deals, Medical Test Coupons, Family Wellness Discount, Early Bird Lab Offer"
       />
 
       {/* Hero */}

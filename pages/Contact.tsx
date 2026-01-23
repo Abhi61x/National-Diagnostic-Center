@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
       <SEO 
         title="Contact Us - Phone Number & Address | National Diagnostic Center"
         description="Contact National Diagnostic Center Lucknow for home sample collection and test inquiries. Call +91 75059 32068 or visit us in Vasundhara Vihar."
-        keywords="Contact Diagnostic Center, Lab Phone Number, Address Pathology Lab Lucknow"
+        keywords="Contact National Diagnostic Center, Lab Phone Number Lucknow, Address Pathology Lab Vasundhara Vihar, Diagnostic Center Timings, Book Appointment WhatsApp, Lab Location Lucknow"
       />
 
       {/* Header */}

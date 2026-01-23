@@ -40,7 +40,7 @@ const About: React.FC = () => {
       <SEO 
         title="About Us - National Diagnostic Center Lucknow"
         description="Learn about National Diagnostic Center's mission to provide accurate and affordable pathology services in Lucknow. 15+ years of experience."
-        keywords="About Diagnostic Center, Pathology Lab History, Dr Pathologist Lucknow"
+        keywords="About National Diagnostic Center, NABL Accredited Lab Lucknow, Pathology Lab History, Dr Pathologist Lucknow, Automated Lab Technology, Medical Team Lucknow"
       />
 
       {/* Image Modal */}

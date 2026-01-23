@@ -39,7 +39,7 @@ const Packages: React.FC = () => {
       <SEO 
         title="Health Packages & Blood Tests Cost in Lucknow | National Diagnostic"
         description={seoDescription}
-        keywords="Full Body Checkup Cost Lucknow, Blood Test Price List, Diabetes Package, Thyroid Test Cost, Preventive Health Checkup"
+        keywords="Full Body Checkup Cost Lucknow, Blood Test Price List, Diabetes Package, Thyroid Test Cost, Preventive Health Checkup, Senior Citizen Health Package, Vitamin D Test Price"
       />
 
       {/* Header */}

@@ -48,7 +48,7 @@ const Home: React.FC = () => {
       <SEO 
         title="National Diagnostic Center | Best Pathology Lab in Lucknow - Home Collection"
         description="Book accurate blood tests and full body checkups at National Diagnostic Center, Lucknow. NABL standards, fast digital reports, and free home sample collection. Trusted by 10,000+ patients."
-        keywords="Pathology Lab Lucknow, Blood Test Home Collection, Full Body Checkup Lucknow, Diagnostic Center Near Me, CBC Test Lucknow, Thyroid Test Price"
+        keywords="Pathology Lab Lucknow, Blood Test Home Collection, Full Body Checkup Lucknow, Diagnostic Center Near Me, CBC Test Lucknow, Thyroid Test Price, NABL Accredited Lab, Sugar Test Price Lucknow"
         schema={businessSchema}
       />
 

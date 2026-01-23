@@ -116,7 +116,7 @@ const FAQ: React.FC = () => {
       <SEO 
         title="Frequently Asked Questions - Tests, Fasting & Reports"
         description="Common questions about blood test preparations, fasting rules, home collection charges, and report delivery times at National Diagnostic Center."
-        keywords="Fasting for Blood Test, Home Collection Charge, Report Delivery Time"
+        keywords="Fasting for Blood Test, Home Collection Charge, Report Delivery Time, Payment Methods Diagnostic Lab, Pathology Lab Queries, Blood Test FAQ"
         schema={faqSchema}
       />
 
