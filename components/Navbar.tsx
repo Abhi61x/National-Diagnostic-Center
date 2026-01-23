@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import LazyImage from './LazyImage';
 
@@ -102,43 +102,81 @@ const Navbar: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isOpen}
-            className="md:hidden flex items-center p-2 text-slate-600 hover:text-primary"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open menu"
+            className="md:hidden flex items-center p-2 text-slate-600 hover:text-primary transition-colors"
           >
-            {isOpen ? <X size={26} /> : <Menu size={26} />}
+            <Menu size={28} />
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu (Portal to body) */}
-      {isOpen && createPortal(
-        <div className="md:hidden fixed top-16 sm:top-20 left-0 right-0 bottom-0 z-[60] bg-white overflow-y-auto border-t border-slate-100 shadow-xl animate-in slide-in-from-right duration-300">
-          <div className="px-4 py-6 space-y-3">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={`block px-5 py-4 rounded-xl text-lg font-bold transition-all ${
-                  isActive(link.path)
-                    ? 'bg-primary text-white shadow-md shadow-primary/20'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-primary'
-                }`}
-              >
-                {link.name}
-              </Link>
-            ))}
+      {/* Mobile Menu Portal */}
+      {createPortal(
+        <div 
+          className={`fixed inset-0 z-[60] md:hidden transition-all duration-300 ${
+            isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible delay-300'
+          }`}
+        >
+          {/* Backdrop */}
+          <div 
+            className={`absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity duration-300 ease-out ${
+              isOpen ? 'opacity-100' : 'opacity-0'
+            }`}
+            onClick={() => setIsOpen(false)}
+          />
 
-            <div className="pt-6 mt-6 border-t border-slate-100">
-              <a
-                href={`tel:${CONTACT_INFO.phone}`}
-                className="flex items-center justify-center gap-3 w-full bg-slate-900 text-white py-4 rounded-xl font-bold shadow-lg active:scale-95 transition-transform"
-              >
-                <Phone size={22} />
-                Call Now: {CONTACT_INFO.phone}
-              </a>
+          {/* Drawer */}
+          <div 
+            className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-[320px] bg-white shadow-2xl transition-transform duration-300 ease-out transform ${
+              isOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
+            <div className="flex flex-col h-full">
+              {/* Drawer Header */}
+              <div className="flex items-center justify-between p-5 border-b border-slate-100">
+                <span className="font-bold text-lg text-slate-900">Menu</span>
+                <button 
+                  onClick={() => setIsOpen(false)}
+                  className="p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              {/* Links */}
+              <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+                {navLinks.map((link) => {
+                  const active = isActive(link.path);
+                  return (
+                    <Link
+                      key={link.name}
+                      to={link.path}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center justify-between px-4 py-3.5 rounded-xl transition-all ${
+                        active 
+                          ? 'bg-primary/10 text-primary font-semibold' 
+                          : 'text-slate-700 font-medium hover:bg-slate-50'
+                      }`}
+                    >
+                      <span>{link.name}</span>
+                      {active && <ChevronRight size={18} />}
+                    </Link>
+                  );
+                })}
+              </div>
+
+              {/* Drawer Footer */}
+              <div className="p-5 border-t border-slate-100 bg-slate-50">
+                <a
+                  href={`tel:${CONTACT_INFO.phone}`}
+                  className="flex items-center justify-center gap-2 w-full bg-primary text-white py-3.5 rounded-xl font-bold shadow-lg shadow-primary/30 active:scale-95 transition-all"
+                >
+                  <Phone size={20} />
+                  Call {CONTACT_INFO.phone}
+                </a>
+              </div>
             </div>
           </div>
         </div>,

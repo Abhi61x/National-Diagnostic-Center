@@ -4,10 +4,12 @@ import PackageCard from '../components/PackageCard';
 import PackageCardSkeleton from '../components/PackageCardSkeleton';
 import Button from '../components/Button';
 import TestimonialSlider from '../components/TestimonialSlider';
-import { Search } from 'lucide-react';
+import { Search, X } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Packages: React.FC = () => {
   const [filter, setFilter] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   
   const categories = ['All', 'Full Body Checkup', 'Blood Test', 'Preventive Care'];
@@ -19,14 +21,27 @@ const Packages: React.FC = () => {
       setIsLoading(false);
     }, 800);
     return () => clearTimeout(timer);
-  }, [filter]);
+  }, [filter, searchQuery]);
 
-  const filteredPackages = filter === 'All' 
-    ? PACKAGES 
-    : PACKAGES.filter(p => p.category === filter);
+  const filteredPackages = PACKAGES.filter(p => {
+    const matchesCategory = filter === 'All' || p.category === filter;
+    const matchesSearch = 
+      p.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      p.features.some(f => f.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    return matchesCategory && matchesSearch;
+  });
+
+  const seoDescription = "View affordable Full Body Checkup packages and blood test prices in Lucknow. Includes CBC, Thyroid, Diabetes, and Senior Citizen health packages.";
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
+      <SEO 
+        title="Health Packages & Blood Tests Cost in Lucknow | National Diagnostic"
+        description={seoDescription}
+        keywords="Full Body Checkup Cost Lucknow, Blood Test Price List, Diabetes Package, Thyroid Test Cost, Preventive Health Checkup"
+      />
+
       {/* Header */}
       <div className="bg-white border-b border-slate-100 pt-8 pb-6 sm:pt-16 sm:pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -34,6 +49,28 @@ const Packages: React.FC = () => {
           <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
             Choose from our wide range of diagnostic tests and preventive health checkups designed for every age group.
           </p>
+          
+          {/* Search Bar */}
+          <div className="max-w-xl mx-auto mt-8 relative">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-slate-400" />
+            </div>
+            <input
+              type="text"
+              className="block w-full pl-11 pr-10 py-3 sm:py-4 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-shadow shadow-sm"
+              placeholder="Search packages (e.g., Vitamin, Thyroid, Diabetes)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600"
+              >
+                <X size={18} />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -62,9 +99,19 @@ const Packages: React.FC = () => {
             ? Array(6).fill(0).map((_, i) => (
                 <PackageCardSkeleton key={i} />
               ))
-            : filteredPackages.map(pkg => (
-                <PackageCard key={pkg.id} pkg={pkg} />
-              ))
+            : filteredPackages.length > 0 ? (
+                filteredPackages.map(pkg => (
+                  <PackageCard key={pkg.id} pkg={pkg} />
+                ))
+              ) : (
+                <div className="col-span-full text-center py-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-slate-100 rounded-full mb-4">
+                    <Search className="w-8 h-8 text-slate-400" />
+                  </div>
+                  <h3 className="text-lg font-medium text-slate-900">No packages found</h3>
+                  <p className="text-slate-500 mt-2">Try adjusting your search or category filter.</p>
+                </div>
+              )
           }
         </div>
 

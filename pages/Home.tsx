@@ -4,7 +4,7 @@ import {
   ShieldCheck, Microscope, Clock, MapPin, Star, 
   FileText, Home as HomeIcon, Award, Zap, CheckCircle2, 
   Phone, ArrowRight, Percent, Activity, Users,
-  CalendarCheck, Truck, Stethoscope
+  CalendarCheck, Truck, Stethoscope, Bell
 } from 'lucide-react';
 import { PACKAGES, OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
@@ -12,12 +12,64 @@ import PackageCard from '../components/PackageCard';
 import TestimonialSlider from '../components/TestimonialSlider';
 import LazyImage from '../components/LazyImage';
 import { useBooking } from '../contexts/BookingContext';
+import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
   const { openBooking } = useBooking();
 
+  const businessSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalOrganization",
+    "name": "National Diagnostic Center",
+    "url": "https://nationaldiagnostic.in",
+    "logo": "https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": CONTACT_INFO.phone,
+      "contactType": "customer service",
+      "areaServed": "Lucknow"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": CONTACT_INFO.address,
+      "addressLocality": "Lucknow",
+      "postalCode": "226021", 
+      "addressCountry": "IN"
+    },
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61580395597334",
+      "https://www.instagram.com/nationaldiagnosticc/"
+    ],
+    "priceRange": "$$"
+  };
+
   return (
     <div className="flex flex-col w-full">
+      <SEO 
+        title="National Diagnostic Center | Best Pathology Lab in Lucknow - Home Collection"
+        description="Book accurate blood tests and full body checkups at National Diagnostic Center, Lucknow. NABL standards, fast digital reports, and free home sample collection. Trusted by 10,000+ patients."
+        keywords="Pathology Lab Lucknow, Blood Test Home Collection, Full Body Checkup Lucknow, Diagnostic Center Near Me, CBC Test Lucknow, Thyroid Test Price"
+        schema={businessSchema}
+      />
+
+      {/* 0️⃣ News Ticker / Notification Bar */}
+      <div className="bg-slate-900 text-white text-[10px] sm:text-xs font-medium py-2 overflow-hidden relative z-50">
+        <div className="whitespace-nowrap animate-marquee flex items-center gap-8 px-4">
+           <span className="flex items-center gap-2"><Bell size={12} className="text-yellow-400" /> Free Home Collection on orders above ₹500</span>
+           <span className="flex items-center gap-2"><Clock size={12} className="text-green-400" /> Open Daily: 8 AM - 9:30 PM | Emergency 24x7</span>
+           <span className="flex items-center gap-2"><ShieldCheck size={12} className="text-blue-400" /> NABL Compliant Lab Procedures</span>
+           <span className="flex items-center gap-2"><Phone size={12} className="text-rose-400" /> 24/7 Helpline: {CONTACT_INFO.phone}</span>
+        </div>
+        <style>{`
+          @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+          }
+          .animate-marquee {
+            animation: marquee 20s linear infinite;
+          }
+        `}</style>
+      </div>
       
       {/* 1️⃣ Hero Section (Above the Fold) */}
       <section className="relative bg-gradient-to-b from-sky-50 to-white pt-6 pb-8 lg:pt-24 lg:pb-28 overflow-hidden">
@@ -401,8 +453,8 @@ const Home: React.FC = () => {
                    <Clock className="text-primary shrink-0 mt-1" size={24} />
                    <div>
                      <h4 className="font-bold text-slate-900 text-sm lg:text-base">Timings</h4>
-                     <p className="text-sm lg:text-base text-slate-600">{CONTACT_INFO.hours.weekdays}</p>
-                     <p className="text-sm lg:text-base text-slate-600">{CONTACT_INFO.hours.sunday} (Sunday)</p>
+                     <p className="text-sm lg:text-base text-slate-600">Daily: {CONTACT_INFO.hours.weekdays}</p>
+                     <p className="text-sm lg:text-base font-bold text-red-600 mt-1">Emergency: {CONTACT_INFO.hours.emergency}</p>
                    </div>
                 </div>
                 <div className="flex items-start gap-4">

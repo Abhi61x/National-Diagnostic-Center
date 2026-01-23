@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Stethoscope, User } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
+import SEO from '../components/SEO';
 
 const Contact: React.FC = () => {
   const [formType, setFormType] = useState<'patient' | 'doctor'>('patient');
@@ -18,6 +19,12 @@ const Contact: React.FC = () => {
 
   return (
     <div className="bg-slate-50 min-h-screen">
+      <SEO 
+        title="Contact Us - Phone Number & Address | National Diagnostic Center"
+        description="Contact National Diagnostic Center Lucknow for home sample collection and test inquiries. Call +91 75059 32068 or visit us in Vasundhara Vihar."
+        keywords="Contact Diagnostic Center, Lab Phone Number, Address Pathology Lab Lucknow"
+      />
+
       {/* Header */}
       <div className="bg-white border-b border-slate-100 py-10 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -60,12 +67,12 @@ const Contact: React.FC = () => {
               <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2">Working Hours</h3>
               <div className="space-y-2">
                 <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-slate-500">Mon - Sat</span>
+                  <span className="text-slate-500">Mon - Sun</span>
                   <span className="font-medium text-slate-900">{CONTACT_INFO.hours.weekdays}</span>
                 </div>
-                <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-slate-500">Sunday</span>
-                  <span className="font-medium text-slate-900">{CONTACT_INFO.hours.sunday}</span>
+                <div className="flex justify-between text-xs sm:text-sm pt-2 border-t border-slate-100">
+                  <span className="font-bold text-red-500">Emergency</span>
+                  <span className="font-bold text-red-600">{CONTACT_INFO.hours.emergency}</span>
                 </div>
               </div>
             </div>

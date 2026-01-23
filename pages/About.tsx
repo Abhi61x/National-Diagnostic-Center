@@ -3,6 +3,7 @@ import { Users, Activity, Award, X, ZoomIn } from 'lucide-react';
 import { CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import LazyImage from '../components/LazyImage';
+import SEO from '../components/SEO';
 
 const About: React.FC = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -29,6 +30,12 @@ const About: React.FC = () => {
 
   return (
     <div className="bg-white relative">
+      <SEO 
+        title="About Us - National Diagnostic Center Lucknow"
+        description="Learn about National Diagnostic Center's mission to provide accurate and affordable pathology services in Lucknow. 15+ years of experience."
+        keywords="About Diagnostic Center, Pathology Lab History, Dr Pathologist Lucknow"
+      />
+
       {/* Image Modal */}
       {selectedImage && (
         <div 

@@ -71,7 +71,7 @@ export const OFFERS: Offer[] = [
   {
     id: 'offer-2',
     title: 'Early Bird Special',
-    description: 'Book any test between 7 AM - 9 AM and avail free home collection.',
+    description: 'Book any test between 8 AM - 10 AM and avail free home collection.',
     code: 'EARLYBIRD',
     discountPercentage: 100, // Conceptually 100% off delivery
     expiryDate: 'Daily',
@@ -119,7 +119,8 @@ export const CONTACT_INFO = {
   email: "care@nationaldiagnostic.in",
   mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3558.913674696879!2d80.956!3d26.878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDUyJzQ4LjAiTiA4MMKwNTcnMjEuNiJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin", // Generic placeholder for Lucknow area, ideally would use specific coords if known
   hours: {
-    weekdays: "7:00 AM - 8:00 PM",
-    sunday: "8:00 AM - 2:00 PM"
+    weekdays: "8:00 AM - 9:30 PM",
+    sunday: "8:00 AM - 9:30 PM",
+    emergency: "24x7 Open"
   }
 };

@@ -3,12 +3,19 @@ import { OFFERS, CONTACT_INFO } from '../constants';
 import Button from '../components/Button';
 import { Timer, Tag, ArrowRight } from 'lucide-react';
 import { useBooking } from '../contexts/BookingContext';
+import SEO from '../components/SEO';
 
 const Offers: React.FC = () => {
   const { openBooking } = useBooking();
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
+      <SEO 
+        title="Special Health Offers & Discounts | National Diagnostic Center"
+        description="Grab limited-time discounts on blood tests and health checkup packages. Family wellness discounts, early bird specials, and more in Lucknow."
+        keywords="Pathology Lab Offers, Blood Test Discount, Health Checkup Deals, Medical Test Coupons"
+      />
+
       {/* Hero */}
       <div className="bg-white pt-8 pb-6 sm:pt-16 sm:pb-12 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

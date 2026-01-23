@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, HelpCircle, FileText, Home, CreditCard, Clock, Search } from 'lucide-react';
 import Button from '../components/Button';
 import { CONTACT_INFO } from '../constants';
+import SEO from '../components/SEO';
 
 const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
@@ -78,8 +79,29 @@ const FAQ: React.FC = () => {
     return { ...section, questions: filteredQuestions };
   }).filter(section => section.questions.length > 0);
 
+  // Generate FAQ Schema
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.flatMap(section => section.questions).map(item => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a
+      }
+    }))
+  };
+
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
+      <SEO 
+        title="Frequently Asked Questions - Tests, Fasting & Reports"
+        description="Common questions about blood test preparations, fasting rules, home collection charges, and report delivery times at National Diagnostic Center."
+        keywords="Fasting for Blood Test, Home Collection Charge, Report Delivery Time"
+        schema={faqSchema}
+      />
+
       {/* Header */}
       <div className="bg-white border-b border-slate-100 py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
