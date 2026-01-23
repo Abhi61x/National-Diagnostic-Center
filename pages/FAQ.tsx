@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle, FileText, Home, CreditCard, Clock, Search } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ChevronDown, ChevronUp, HelpCircle, FileText, Home, CreditCard, Clock, Search, ArrowUp } from 'lucide-react';
 import Button from '../components/Button';
 import { CONTACT_INFO } from '../constants';
 import SEO from '../components/SEO';
@@ -7,6 +7,24 @@ import SEO from '../components/SEO';
 const FAQ: React.FC = () => {
   const [openQuestion, setOpenQuestion] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const toggleFAQ = (question: string) => {
     setOpenQuestion(openQuestion === question ? null : question);
@@ -94,7 +112,7 @@ const FAQ: React.FC = () => {
   };
 
   return (
-    <div className="bg-slate-50 min-h-screen pb-20">
+    <div className="bg-slate-50 min-h-screen pb-20 relative">
       <SEO 
         title="Frequently Asked Questions - Tests, Fasting & Reports"
         description="Common questions about blood test preparations, fasting rules, home collection charges, and report delivery times at National Diagnostic Center."
@@ -202,6 +220,17 @@ const FAQ: React.FC = () => {
            </div>
         </div>
       </div>
+
+      {/* Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 left-6 z-40 p-3 bg-primary hover:bg-sky-600 text-white rounded-full shadow-lg shadow-primary/30 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+          aria-label="Scroll to top"
+        >
+          <ArrowUp size={24} />
+        </button>
+      )}
     </div>
   );
 };

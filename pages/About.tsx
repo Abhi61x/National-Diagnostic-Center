@@ -26,6 +26,13 @@ const About: React.FC = () => {
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010363/IMG_8796_qna75i.jpg",
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769064941/IMG-20260122-WA0010_kzpkaq.jpg",
     "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769064942/IMG_8337_y0xump.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170085/IMG-20260123-WA0017_rd0d2w.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170085/IMG-20260123-WA0016_nx65z0.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170086/IMG-20260123-WA0014_ckuwzf.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170086/IMG-20260123-WA0018_hteohi.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170086/IMG-20260123-WA0015_kcurvo.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170086/IMG-20260123-WA0012_ylresz.jpg",
+    "https://res.cloudinary.com/djhgkdqwl/image/upload/v1769170087/IMG-20260123-WA0013_t7a0au.jpg"
   ];
 
   return (

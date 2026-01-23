@@ -10,7 +10,6 @@ import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import { BookingProvider } from './contexts/BookingContext';
 import BookingModal from './components/BookingModal';
-import HealthAssistant from './components/HealthAssistant';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -50,7 +49,6 @@ const App: React.FC = () => {
           
           <Footer />
           <BookingModal />
-          <HealthAssistant />
         </div>
       </Router>
     </BookingProvider>

@@ -132,9 +132,15 @@ const BookingModal: React.FC = () => {
                 <CheckCircle2 className="w-10 h-10 text-green-600" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-2">Booking Confirmed!</h3>
-              <p className="text-slate-600 mb-6">
+              <p className="text-slate-600 mb-4">
                 Thank you <span className="font-semibold">{name}</span>. We have received your request.
               </p>
+              
+              {bookingDetails && (
+                <div className="mb-6 p-3 bg-sky-50 text-sky-900 rounded-lg border border-sky-100 text-sm font-medium">
+                  Service: {bookingDetails}
+                </div>
+              )}
               
               <div className="bg-slate-50 border border-slate-100 rounded-xl p-4 flex items-start gap-3 text-left">
                 <div className="bg-blue-100 p-2 rounded-full shrink-0">
