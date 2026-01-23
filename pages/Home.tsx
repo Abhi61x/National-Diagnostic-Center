@@ -107,12 +107,14 @@ const Home: React.FC = () => {
               </p>
             </div>
             
-            <div className="relative mt-2 lg:mt-0 order-1 lg:order-2">
+            <div className="relative mt-2 lg:mt-0 order-1 lg:order-2 flex justify-center">
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl transform translate-x-10 translate-y-10"></div>
+              {/* Changed container to h-auto and added padding/flex to ensure image is fully visible */}
               <LazyImage 
-                src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
+                src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769169585/IMG_8929.JPG_y8m2o9.jpg" 
                 alt="Lab Technician" 
-                className="relative rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-4 border-white z-10 w-full h-[220px] sm:h-[400px] lg:h-[500px]"
+                className="relative rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-4 border-white z-10 w-full max-w-md lg:max-w-full aspect-[4/3] lg:aspect-square bg-white"
+                imgClassName="!object-contain p-1"
               />
               {/* Floating Card - Adjusted for mobile */}
               <div className="absolute bottom-3 left-3 lg:-left-8 bg-white p-2 sm:p-4 rounded-xl shadow-xl z-20 flex items-center gap-2 sm:gap-3 animate-in fade-in slide-in-from-bottom-4 duration-1000 max-w-[160px] sm:max-w-none">
