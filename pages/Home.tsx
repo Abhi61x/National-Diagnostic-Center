@@ -21,26 +21,50 @@ const Home: React.FC = () => {
     "@context": "https://schema.org",
     "@type": "MedicalOrganization",
     "name": "National Diagnostic Center",
+    "alternateName": "National Pathology Lab Lucknow",
     "url": "https://nationaldiagnostic.in",
     "logo": "https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg",
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": CONTACT_INFO.phone,
       "contactType": "customer service",
-      "areaServed": "Lucknow"
+      "areaServed": "Lucknow",
+      "availableLanguage": ["English", "Hindi"]
     },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": CONTACT_INFO.address,
       "addressLocality": "Lucknow",
+      "addressRegion": "Uttar Pradesh",
       "postalCode": "226021", 
       "addressCountry": "IN"
     },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 26.878,
+      "longitude": 80.956
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "08:00",
+        "closes": "21:30"
+      }
+    ],
     "sameAs": [
       "https://www.facebook.com/profile.php?id=61580395597334",
       "https://www.instagram.com/nationaldiagnosticc/"
     ],
-    "priceRange": "$$"
+    "priceRange": "₹300 - ₹5000"
   };
 
   return (
@@ -78,16 +102,17 @@ const Home: React.FC = () => {
             <div className="space-y-4 lg:space-y-6 text-center lg:text-left order-2 lg:order-1">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-white shadow-sm border border-slate-100 mx-auto lg:mx-0">
                 <span className="flex h-2 w-2 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="text-[10px] sm:text-xs lg:text-sm font-bold text-slate-700 uppercase tracking-wide">Lucknow's Trusted Lab</span>
+                <span className="text-[10px] sm:text-xs lg:text-sm font-bold text-slate-700 uppercase tracking-wide">Best Lab in Tedi Pulia, Lucknow</span>
               </div>
               
               <h1 className="text-2xl sm:text-4xl lg:text-6xl font-extrabold text-slate-900 leading-tight lg:leading-[1.15]">
-                Trusted Diagnostic & <br className="hidden lg:block" />
+                National Diagnostic & <br className="hidden lg:block" />
                 <span className="text-primary">Pathology Lab</span>
               </h1>
               
               <p className="text-sm sm:text-lg lg:text-xl text-slate-600 font-medium max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                Accurate Blood Tests • Fast Reports • Free Home Sample Collection
+                Accurate Blood Tests • Fast Reports • Free Home Sample Collection. <br/>
+                <span className="text-slate-500 font-normal italic">Ghar baithe test karwayein, bina kisi extra charge ke.</span>
               </p>
               
               <div className="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start pt-2 lg:pt-4">
@@ -103,7 +128,7 @@ const Home: React.FC = () => {
 
               <p className="text-xs sm:text-sm text-slate-500 pt-2 flex items-center justify-center lg:justify-start gap-2">
                 <Star className="w-3 h-3 lg:w-4 lg:h-4 text-yellow-500 fill-yellow-500" />
-                <span>Rated 4.9/5 by 10,000+ Patients</span>
+                <span>Trusted by 50,000+ Patients in Lucknow</span>
               </p>
             </div>
             
@@ -112,7 +137,7 @@ const Home: React.FC = () => {
               {/* Changed container to h-auto and added padding/flex to ensure image is fully visible */}
               <LazyImage 
                 src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769169585/IMG_8929.JPG_y8m2o9.jpg" 
-                alt="Lab Technician" 
+                alt="National Diagnostic Center Lab Technician Lucknow" 
                 className="relative rounded-2xl lg:rounded-3xl shadow-xl lg:shadow-2xl border-4 border-white z-10 w-full max-w-md lg:max-w-full aspect-[4/3] lg:aspect-square bg-white"
                 imgClassName="!object-contain p-1"
               />
@@ -137,7 +162,7 @@ const Home: React.FC = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-y-3 gap-x-2 lg:gap-6 text-white">
              {[
                { icon: ShieldCheck, text: "NABL Standards" },
-               { icon: Users, text: "10,000+ Patients" },
+               { icon: Users, text: "15+ Years Exp" },
                { icon: Zap, text: "Same Day Reports" },
                { icon: Award, text: "Trained Experts" }
              ].map((item, idx) => (
@@ -277,13 +302,13 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10 lg:mb-16">
             <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-2 lg:mb-4">Why Families Trust Us</h2>
-            <p className="text-sm lg:text-base text-slate-600">We don't just test samples; we care for your health with precision and hygiene.</p>
+            <p className="text-sm lg:text-base text-slate-600">We don't just test samples; we care for your health with precision and hygiene. <br/> <span className="text-primary font-medium">Reports jo hain 100% Accurate.</span></p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-12">
             {[
               { title: "Accurate & Hygienic", text: "NABL compliant labs with automated machines ensuring zero human error.", icon: ShieldCheck },
-              { title: "Experienced Staff", text: "Qualified technicians and pathologists with over 10 years of experience.", icon: Award },
+              { title: "Experienced Staff", text: "Qualified technicians and pathologists with over 15 years of experience.", icon: Award },
               { title: "Transparent Pricing", text: "No hidden costs. The price you see is the price you pay.", icon: Percent },
               { title: "Timely Reports", text: "Get your reports delivered digitally via WhatsApp as soon as they are ready.", icon: Clock },
             ].map((feature, idx) => (
@@ -311,7 +336,7 @@ const Home: React.FC = () => {
                 Comfort at Home
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-5xl font-bold mt-3 sm:mt-4 mb-3 sm:mb-4 lg:mb-6 leading-tight">
-                Free Home Sample Collection
+                Free Home Sample Collection in Lucknow
               </h2>
               <p className="text-teal-100 text-sm sm:text-base lg:text-lg mb-6 lg:mb-8 leading-relaxed">
                 Why step out when we can come to you? Book a blood test from the comfort of your home. Our phlebotomists follow strict safety protocols.
@@ -440,7 +465,7 @@ const Home: React.FC = () => {
             <div className="order-2 lg:order-1">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 mb-3 sm:mb-4 lg:mb-6">Visit Our Lab Center</h2>
               <p className="text-sm sm:text-base lg:text-lg text-slate-600 mb-6 lg:mb-8">
-                Located conveniently in <strong>Lucknow</strong>, we are accessible for all your diagnostic needs. Walk-ins are welcome.
+                Located conveniently in <strong>Lucknow (Vasundhara Vihar)</strong>, we are accessible for all your diagnostic needs. Walk-ins are welcome.
               </p>
               
               <div className="space-y-4 lg:space-y-6">
