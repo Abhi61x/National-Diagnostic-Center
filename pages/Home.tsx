@@ -11,7 +11,6 @@ import Button from '../components/Button';
 import PackageCard from '../components/PackageCard';
 import TestimonialSlider from '../components/TestimonialSlider';
 import LazyImage from '../components/LazyImage';
-import AIGuide from '../components/AIGuide';
 import { useBooking } from '../contexts/BookingContext';
 import SEO from '../components/SEO';
 
@@ -158,8 +157,6 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
-
-      <AIGuide />
 
       <section className="py-20 lg:py-32 bg-white">
         <div className="max-w-7xl mx-auto px-4">
