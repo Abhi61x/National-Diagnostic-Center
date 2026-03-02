@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nationaldiagnostic.in/</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>daily</changefreq>
+    <loc>https://nationaldiagnostic.vercel.app/</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://nationaldiagnostic.in/packages</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://nationaldiagnostic.in/offers</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>weekly</changefreq>
+    <loc>https://nationaldiagnostic.vercel.app/packages</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nationaldiagnostic.in/about</loc>
-    <lastmod>2025-01-23</lastmod>
+    <loc>https://nationaldiagnostic.vercel.app/offers</loc>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://nationaldiagnostic.in/contact</loc>
-    <lastmod>2025-01-23</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://nationaldiagnostic.in/faq</loc>
-    <lastmod>2025-01-23</lastmod>
+    <loc>https://nationaldiagnostic.vercel.app/about</loc>
+    <lastmod>2026-03-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://nationaldiagnostic.vercel.app/faq</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://nationaldiagnostic.vercel.app/contact</loc>
+    <lastmod>2026-03-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 </urlset>

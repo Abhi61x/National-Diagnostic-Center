@@ -4,37 +4,32 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>National Diagnostic Center | Best Pathology Lab in Lucknow - Home Collection</title>
-    <meta name="description" content="Book Blood Test in Lucknow at National Diagnostic Center. Free Home Collection @ Tedi Pulia, Ring Road. NABL Standards, Accurate Reports & Best Prices. Call +91 75059 32068." />
+    <meta name="description" content="Book Blood Test in Lucknow at National Diagnostic Center. Free Home Collection @ Tedi Pulia, Ring Road. NABL Standards, Accurate Reports & Best Prices. Call +91 87072 62043." />
     
-    <!-- Local SEO Geo Tags -->
-    <meta name="geo.region" content="IN-UP" />
-    <meta name="geo.placename" content="Lucknow" />
-    <meta name="geo.position" content="26.878;80.956" />
-    <meta name="ICBM" content="26.878, 80.956" />
-
-    <!-- Google Site Verification -->
-    <meta name="google-site-verification" content="eyTO5jc0bFlbTXqCCBDMxYoMNZCGOBHfyIkjASxVuLQ" />
-
-    <!-- Open Graph / Facebook / Meta Ads -->
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://nationaldiagnostic.in/" />
-    <meta property="og:title" content="National Diagnostic Center - Best Lab in Lucknow" />
-    <meta property="og:description" content="Accurate reports, affordable prices, and Free Home Sample Collection in Lucknow. Book via WhatsApp now." />
+    <meta property="og:url" content="https://nationaldiagnostic.vercel.app/" />
+    <meta property="og:title" content="National Diagnostic Center | Best Pathology Lab in Lucknow" />
+    <meta property="og:description" content="Premium diagnostic services in Lucknow. NABL standards, automated processing, and free doorstep sample collection." />
     <meta property="og:image" content="https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://nationaldiagnostic.in/" />
-    <meta property="twitter:title" content="National Diagnostic Center - Lucknow" />
-    <meta property="twitter:description" content="Trusted pathology lab in Lucknow offering home sample collection and digital reports." />
+    <meta property="twitter:url" content="https://nationaldiagnostic.vercel.app/" />
+    <meta property="twitter:title" content="National Diagnostic Center | Best Pathology Lab in Lucknow" />
+    <meta property="twitter:description" content="Premium diagnostic services in Lucknow. NABL standards, automated processing, and free doorstep sample collection." />
     <meta property="twitter:image" content="https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg" />
+    
+    <meta name="geo.region" content="IN-UP" />
+    <meta name="geo.placename" content="Lucknow" />
+    <meta name="geo.position" content="26.878;80.956" />
+    <meta name="ICBM" content="26.878, 80.956" />
 
     <link rel="icon" type="image/jpg" href="https://res.cloudinary.com/doehytakj/image/upload/v1769064681/WhatsApp_Image_2026-01-22_at_11.07.34_AM_zrckhq.jpg" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
-      // Safe polyfill for process.env to prevent ReferenceErrors in browser environments
       if (typeof process === 'undefined') {
         window.process = { env: {} };
       }
@@ -47,9 +42,13 @@
               sans: ['Inter', 'sans-serif'],
             },
             colors: {
-              primary: '#0ea5e9', // Sky 500
-              secondary: '#0f766e', // Teal 700
-              accent: '#38bdf8', // Sky 400
+              primary: '#0ea5e9',
+              secondary: '#0f766e',
+              accent: '#38bdf8',
+              navy: {
+                DEFAULT: '#0f172a',
+                light: '#1e293b'
+              }
             }
           }
         }
@@ -60,33 +59,30 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Hide scrollbar for Chrome, Safari and Opera */
       ::-webkit-scrollbar {
         display: none;
       }
-      /* Hide scrollbar for IE, Edge and Firefox */
       html {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      @keyframes marquee {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+      }
+      .animate-marquee {
+        animation: marquee 25s linear infinite;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
-    "react-router-dom": "https://esm.sh/react-router-dom@^6.28.0",
-    "@google/genai": "https://esm.sh/@google/genai",
-    "react-dom": "https://esm.sh/react-dom@^19.2.3"
-  }
-}
-</script>
+  <link rel="stylesheet" href="/index.css">
 </head>
   <body class="bg-slate-50 text-slate-800">
     <div id="root"></div>
-    <!-- This script tag was missing. It connects HTML to your React code -->
     <script type="module" src="/index.tsx"></script>
-  </body>
+</body>
 </html>

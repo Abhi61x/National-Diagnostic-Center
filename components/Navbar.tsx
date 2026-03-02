@@ -18,12 +18,10 @@ const Navbar: React.FC = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
-  // Better active route handling
   const isActive = (path: string) =>
     location.pathname === path ||
     (path !== '/' && location.pathname.startsWith(path));
 
-  // Scroll lock when mobile menu open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -39,8 +37,6 @@ const Navbar: React.FC = () => {
     <nav className="sticky top-0 z-50 bg-white border-b border-slate-100 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 sm:h-20">
-
-          {/* Logo */}
           <Link
             to="/"
             className="flex items-center gap-2 sm:gap-3"
@@ -53,16 +49,15 @@ const Navbar: React.FC = () => {
               imgClassName="rounded-full"
             />
             <div className="flex flex-col">
-              <span className="text-lg sm:text-xl font-bold text-slate-900 leading-none">
+              <span className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-none">
                 National
               </span>
-              <span className="text-[10px] sm:text-xs font-medium text-slate-500 tracking-wider">
+              <span className="text-[8px] sm:text-[10px] lg:text-xs font-medium text-slate-500 tracking-wider">
                 DIAGNOSTIC CENTER
               </span>
             </div>
           </Link>
 
-          {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => {
               const active = isActive(link.path);
@@ -89,7 +84,6 @@ const Navbar: React.FC = () => {
             })}
           </div>
 
-          {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
             <a
               href={`tel:${CONTACT_INFO.phone}`}
@@ -100,7 +94,6 @@ const Navbar: React.FC = () => {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(true)}
             aria-label="Open menu"
@@ -111,29 +104,24 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Portal */}
       {createPortal(
         <div 
           className={`fixed inset-0 z-[60] md:hidden transition-all duration-300 ${
             isOpen ? 'pointer-events-auto visible' : 'pointer-events-none invisible delay-300'
           }`}
         >
-          {/* Backdrop */}
           <div 
             className={`absolute inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity duration-300 ease-out ${
               isOpen ? 'opacity-100' : 'opacity-0'
             }`}
             onClick={() => setIsOpen(false)}
           />
-
-          {/* Drawer */}
           <div 
             className={`absolute top-0 right-0 bottom-0 w-[85%] max-w-[320px] bg-white shadow-2xl transition-transform duration-300 ease-out transform ${
               isOpen ? 'translate-x-0' : 'translate-x-full'
             }`}
           >
             <div className="flex flex-col h-full">
-              {/* Drawer Header */}
               <div className="flex items-center justify-between p-5 border-b border-slate-100">
                 <span className="font-bold text-lg text-slate-900">Menu</span>
                 <button 
@@ -144,8 +132,6 @@ const Navbar: React.FC = () => {
                   <X size={24} />
                 </button>
               </div>
-
-              {/* Links */}
               <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
                 {navLinks.map((link) => {
                   const active = isActive(link.path);
@@ -166,8 +152,6 @@ const Navbar: React.FC = () => {
                   );
                 })}
               </div>
-
-              {/* Drawer Footer */}
               <div className="p-5 border-t border-slate-100 bg-slate-50">
                 <a
                   href={`tel:${CONTACT_INFO.phone}`}

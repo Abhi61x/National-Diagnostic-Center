@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nationaldiagnostic.in/sitemap.xml
+Sitemap: https://nationaldiagnostic.vercel.app/sitemap.xml

@@ -17,7 +17,6 @@ const HealthAssistant: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   
-  // Chat session reference to maintain context
   const chatSession = useRef<Chat | null>(null);
 
   const scrollToBottom = () => {
@@ -46,8 +45,8 @@ const HealthAssistant: React.FC = () => {
           1. **Packages & Services:**
              ${packageDescriptions}
           2. **Logistics:**
-             - Address: Shop number 3, Ring Road, Tedi Pulia, Vasundhara Vihar Gate, Lucknow.
-             - Phone: +91 75059 32068.
+             - Address: Tedipuliya ring road shope no 3 Vasundhara Bihar gate Lucknow-226022.
+             - Phone: +91 87072 62043.
              - Home Collection: Free for orders > ₹500.
              - Report Time: 6-24 hours typically (Digital via WhatsApp).
              - Opening Hours: 8:00 AM - 9:30 PM (Daily).
@@ -60,12 +59,9 @@ const HealthAssistant: React.FC = () => {
 
           **CRITICAL MEDICAL PROTOCOL:**
           - **NEVER** provide a medical diagnosis or treatment plan.
-          - If a user asks about specific test results (e.g., "Is 150 blood sugar high?", "What does high TSH mean?"):
-            1. You may provide general reference information (e.g., "A fasting blood sugar of 150 mg/dL is generally considered above normal...").
-            2. BUT you MUST immediately follow up with: "**However, I am an AI assistant, not a doctor. Please consult a physician for a proper clinical diagnosis and treatment.**"
-          - **NEVER** suggest medications.
-          
-          **Tone:** Warm, empathetic, clear, and professional. Use "We" when referring to the center.
+          - If a user asks about specific test results:
+            1. You may provide general reference information.
+            2. BUT you MUST follow up with: "**However, I am an AI assistant, not a doctor. Please consult a physician for a proper clinical diagnosis.**"
           `,
         },
       });
@@ -74,7 +70,6 @@ const HealthAssistant: React.FC = () => {
     }
   };
 
-  // Initialize on first open
   useEffect(() => {
     if (isOpen && !chatSession.current) {
       initializeChat();
@@ -95,17 +90,13 @@ const HealthAssistant: React.FC = () => {
       
       if (chatSession.current) {
         const result = await chatSession.current.sendMessageStream({ message: userMsg });
-        
         let fullResponse = "";
-        
-        // Add a placeholder for the model response
         setMessages(prev => [...prev, { role: 'model', text: "" }]);
 
         for await (const chunk of result) {
           const c = chunk as GenerateContentResponse;
           if (c.text) {
             fullResponse += c.text;
-            // Update the last message with the accumulating text
             setMessages(prev => {
               const newHistory = [...prev];
               newHistory[newHistory.length - 1].text = fullResponse;
@@ -113,30 +104,9 @@ const HealthAssistant: React.FC = () => {
             });
           }
         }
-      } else {
-        throw new Error("Chat not initialized");
       }
     } catch (error) {
-      console.error("Chat Error:", error);
-      
-      let errorMessage = "I apologize, but I'm experiencing a temporary connection issue. Please try asking again.";
-      
-      if (error instanceof Error) {
-         if (error.message.includes("Chat not initialized")) {
-             errorMessage = "I'm having trouble starting the conversation. Please refresh the page or call us directly.";
-         } else if (error.message.includes("API key") || error.message.includes("403")) {
-             errorMessage = "I am currently undergoing system maintenance. Please call +91 75059 32068 for immediate assistance.";
-         }
-      }
-
-      setMessages(prev => {
-          // Remove the empty loading message if it exists
-          const history = [...prev];
-          if (history.length > 0 && history[history.length - 1].role === 'model' && history[history.length - 1].text === "") {
-              history.pop(); 
-          }
-          return [...history, { role: 'model', text: errorMessage }];
-      });
+      setMessages(prev => [...prev, { role: 'model', text: "I apologize, but I'm having trouble connecting right now." }]);
     } finally {
       setIsLoading(false);
     }
@@ -144,22 +114,17 @@ const HealthAssistant: React.FC = () => {
 
   return (
     <>
-      {/* Floating Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`fixed bottom-6 right-6 z-50 p-4 rounded-full shadow-2xl transition-all duration-300 ${
           isOpen ? 'bg-slate-800 rotate-90' : 'bg-primary hover:bg-sky-600 hover:scale-110'
         } text-white flex items-center justify-center`}
-        aria-label="Toggle Health Assistant"
       >
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-24 right-6 z-50 w-[90vw] sm:w-[380px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 fade-in duration-300">
-          
-          {/* Header */}
+        <div className="fixed bottom-24 right-6 z-50 w-[90vw] sm:w-[380px] h-[500px] bg-white rounded-2xl shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
           <div className="bg-slate-900 p-4 flex items-center gap-3 border-b border-slate-800">
             <div className="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center border border-primary/50">
               <Sparkles size={20} className="text-primary" />
@@ -168,34 +133,17 @@ const HealthAssistant: React.FC = () => {
               <h3 className="font-bold text-white text-sm">AI Health Assistant</h3>
               <p className="text-xs text-slate-400 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                Online • Powered by Gemini
+                Online
               </p>
             </div>
           </div>
-
-          {/* Messages Area */}
-          <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50 scrollbar-thin">
+          <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50">
             {messages.map((msg, idx) => (
-              <div
-                key={idx}
-                className={`flex items-start gap-2.5 ${
-                  msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'
-                }`}
-              >
-                <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
-                    msg.role === 'user' ? 'bg-indigo-100 text-indigo-600' : 'bg-white border border-slate-200 text-primary'
-                  }`}
-                >
+              <div key={idx} className={`flex items-start gap-2.5 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${msg.role === 'user' ? 'bg-indigo-100 text-indigo-600' : 'bg-white border border-slate-200 text-primary'}`}>
                   {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
                 </div>
-                <div
-                  className={`p-3 rounded-2xl max-w-[80%] text-sm leading-relaxed shadow-sm ${
-                    msg.role === 'user'
-                      ? 'bg-indigo-600 text-white rounded-tr-none'
-                      : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'
-                  }`}
-                >
+                <div className={`p-3 rounded-2xl max-w-[80%] text-sm leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white text-slate-700 border border-slate-100 rounded-tl-none'}`}>
                   {msg.text}
                 </div>
               </div>
@@ -208,8 +156,6 @@ const HealthAssistant: React.FC = () => {
             )}
             <div ref={messagesEndRef} />
           </div>
-
-          {/* Input Area */}
           <form onSubmit={handleSend} className="p-3 bg-white border-t border-slate-100">
             <div className="relative flex items-center">
               <input
@@ -217,19 +163,12 @@ const HealthAssistant: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about tests, fasting..."
-                className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 focus:bg-white transition-all"
+                className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm outline-none"
               />
-              <button
-                type="submit"
-                disabled={isLoading || !input.trim()}
-                className="absolute right-2 p-2 bg-primary text-white rounded-lg hover:bg-sky-600 disabled:opacity-50 disabled:hover:bg-primary transition-colors"
-              >
+              <button type="submit" disabled={isLoading || !input.trim()} className="absolute right-2 p-2 bg-primary text-white rounded-lg">
                 <Send size={16} />
               </button>
             </div>
-            <p className="text-[10px] text-center text-slate-400 mt-2">
-              AI can make mistakes. For medical advice, consult a doctor.
-            </p>
           </form>
         </div>
       )}

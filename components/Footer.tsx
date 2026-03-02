@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://www.facebook.com/profile.php?id=61580395597334" 
+                href="https://www.facebook.com/share/1734QNKL1p/?mibextid=wwXIfr" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
                 <Facebook size={18} />
               </a>
               <a 
-                href="https://www.instagram.com/nationaldiagnosticc/" 
+                href="https://www.instagram.com/nationaldiagnosticc?igsh=aHVsbjZwZWdtenNp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-primary hover:text-white transition-colors"
@@ -60,11 +60,6 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
               ))}
-              <li>
-                <a href="/sitemap.xml" target="_blank" className="hover:text-primary transition-colors">
-                  Sitemap
-                </a>
-              </li>
             </ul>
           </div>
 

@@ -50,7 +50,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pkg }) => {
         
         <ul className="space-y-2 sm:space-y-3 mb-4">
           {displayedFeatures.map((feature, idx) => (
-            <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600 animate-in fade-in slide-in-from-top-1 duration-300">
+            <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-600">
               <CheckCircle2 size={16} className="text-secondary shrink-0 mt-0.5" />
               <span>{feature}</span>
             </li>

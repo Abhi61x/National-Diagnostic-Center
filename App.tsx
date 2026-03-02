@@ -10,8 +10,8 @@ import Contact from './pages/Contact';
 import FAQ from './pages/FAQ';
 import { BookingProvider } from './contexts/BookingContext';
 import BookingModal from './components/BookingModal';
+import HealthAssistant from './components/HealthAssistant';
 
-// Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -23,10 +23,9 @@ const ScrollToTop = () => {
 const App: React.FC = () => {
   return (
     <BookingProvider>
-      <Router>
+      <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen bg-white text-slate-900 font-sans relative">
-          {/* Accessibility Skip Link */}
           <a 
             href="#main-content" 
             className="sr-only focus:not-sr-only focus:absolute focus:top-5 focus:left-5 focus:z-[100] focus:px-6 focus:py-3 focus:bg-white focus:text-primary focus:font-bold focus:rounded-xl focus:shadow-2xl focus:border focus:border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary transition-all"
@@ -49,6 +48,7 @@ const App: React.FC = () => {
           
           <Footer />
           <BookingModal />
+          <HealthAssistant />
         </div>
       </Router>
     </BookingProvider>
