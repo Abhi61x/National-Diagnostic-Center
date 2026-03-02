@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-4 lg:space-x-8">
             {navLinks.map((link) => {
               const active = isActive(link.path);
               return (
@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
                   className="group relative py-2"
                 >
                   <span
-                    className={`text-sm font-medium transition-colors duration-200 ${
+                    className={`text-xs lg:text-sm font-medium transition-colors duration-200 ${
                       active ? 'text-primary' : 'text-slate-600 group-hover:text-primary'
                     }`}
                   >
@@ -87,9 +87,9 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center">
             <a
               href={`tel:${CONTACT_INFO.phone}`}
-              className="flex items-center gap-2 text-primary font-semibold bg-primary/10 px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors"
+              className="flex items-center gap-2 text-primary font-semibold bg-primary/10 px-3 lg:px-4 py-2 rounded-lg hover:bg-primary/20 transition-colors text-sm lg:text-base"
             >
-              <Phone size={18} />
+              <Phone size={16} className="lg:w-[18px] lg:h-[18px]" />
               {CONTACT_INFO.phone}
             </a>
           </div>

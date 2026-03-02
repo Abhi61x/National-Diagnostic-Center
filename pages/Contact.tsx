@@ -34,45 +34,45 @@ const Contact: React.FC = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Contact Cards */}
-          <div className="space-y-4 sm:space-y-6">
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-1 gap-4 sm:gap-6 lg:space-y-6">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center lg:items-start lg:text-left">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mb-4">
                 <Phone size={20} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2">Phone Support</h3>
-              <p className="text-sm sm:text-base text-slate-500 mb-3 sm:mb-4">24/7 Helpline for appointments</p>
-              <a href={`tel:${CONTACT_INFO.phone}`} className="text-lg sm:text-xl font-bold text-slate-900 hover:text-primary transition-colors">
+              <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">24/7 Helpline</p>
+              <a href={`tel:${CONTACT_INFO.phone}`} className="text-base sm:text-lg font-bold text-slate-900 hover:text-primary transition-colors">
                 {CONTACT_INFO.phone}
               </a>
             </div>
 
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center lg:items-start lg:text-left">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">
                 <MapPin size={20} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2">Visit Lab</h3>
-              <p className="text-sm sm:text-base text-slate-500 mb-3 sm:mb-4">Walk-ins welcome during working hours</p>
-              <p className="text-sm sm:text-base text-slate-900 font-medium">
+              <p className="text-xs sm:text-sm text-slate-500 mb-3 sm:mb-4">Vasundhara Bihar</p>
+              <p className="text-xs sm:text-sm text-slate-900 font-medium line-clamp-2">
                 {CONTACT_INFO.address}
               </p>
             </div>
 
-            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100">
+            <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center lg:items-start lg:text-left">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mb-4">
                 <Clock size={20} className="sm:w-6 sm:h-6" />
               </div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-1 sm:mb-2">Working Hours</h3>
-              <div className="space-y-2">
-                <div className="flex justify-between text-xs sm:text-sm">
-                  <span className="text-slate-500">Mon - Sun</span>
-                  <span className="font-medium text-slate-900">{CONTACT_INFO.hours.weekdays}</span>
+              <div className="w-full space-y-1">
+                <div className="flex justify-between text-[10px] sm:text-xs">
+                  <span className="text-slate-500">Daily</span>
+                  <span className="font-medium text-slate-900">8AM - 9:30PM</span>
                 </div>
-                <div className="flex justify-between text-xs sm:text-sm pt-2 border-t border-slate-100">
+                <div className="flex justify-between text-[10px] sm:text-xs pt-1 border-t border-slate-100">
                   <span className="font-bold text-red-500">Emergency</span>
-                  <span className="font-bold text-red-600">{CONTACT_INFO.hours.emergency}</span>
+                  <span className="font-bold text-red-600">24x7</span>
                 </div>
               </div>
             </div>

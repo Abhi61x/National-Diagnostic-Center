@@ -85,22 +85,22 @@ const About: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
         
         {/* Story Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-16 items-center mb-16 sm:mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-16 items-center mb-16 sm:mb-24">
           <div>
             <LazyImage 
               src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769010363/IMG_8796_qna75i.jpg" 
               alt="Lab equipment and staff" 
-              className="rounded-3xl shadow-2xl h-[300px] sm:h-[450px]"
+              className="rounded-3xl shadow-2xl h-[300px] sm:h-[400px] lg:h-[450px]"
               imgClassName="rounded-3xl object-cover"
             />
           </div>
-          <div>
+          <div className="text-center md:text-left">
             <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-4 sm:mb-6">Our Story & Mission</h2>
             <p className="text-sm sm:text-base text-slate-600 mb-4 leading-relaxed">
               Founded in 2010, National Diagnostic Center started with a simple mission: to make high-quality diagnostic services accessible to every local family. Over the last decade, we have grown into a state-of-the-art facility trusted by leading doctors and hospitals.
             </p>
             <p className="text-sm sm:text-base text-slate-600 mb-8 leading-relaxed">
-              We understand that behind every sample is a person waiting for answers. That’s why we invest heavily in automation to reduce human error and speed up reporting times, ensuring you get the care you need, when you need it.
+              We understand that behind every sample is a person waiting for answers. That’s why we invest heavily in automation to reduce human error and speed up reporting times.
             </p>
             
             <div className="grid grid-cols-2 gap-6">
@@ -138,7 +138,7 @@ const About: React.FC = () => {
         {/* Gallery Section */}
         <div className="mb-20 sm:mb-28">
             <h2 className="text-xl sm:text-3xl font-bold text-slate-900 mb-8 sm:mb-12 text-center">Our Advanced Facilities</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                 {galleryImages.map((img, idx) => (
                     <div 
                       key={idx} 

@@ -86,26 +86,26 @@ const Home: React.FC = () => {
       </div>
       
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-8 pb-12 sm:pt-16 sm:pb-20 lg:pt-28 lg:pb-36 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-50 via-white to-blue-50/30 pt-8 pb-12 sm:pt-16 sm:pb-20 md:pt-20 md:pb-24 lg:pt-28 lg:pb-36 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            <div className="space-y-6 sm:space-y-8 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/70 backdrop-blur-md border border-slate-100 shadow-sm mx-auto lg:mx-0">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-center">
+            <div className="space-y-6 sm:space-y-8 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/70 backdrop-blur-md border border-slate-100 shadow-sm mx-auto md:mx-0">
                 <span className="flex h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-secondary animate-pulse"></span>
                 <span className="text-[10px] sm:text-[11px] lg:text-xs font-bold text-slate-600 uppercase tracking-widest">Lucknow's Excellence in Diagnostics</span>
               </div>
               
               <div className="space-y-3 sm:space-y-4">
-                <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
+                <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight">
                   Healthcare With <br className="hidden sm:block" />
                   <span className="text-primary">Precision & Care.</span>
                 </h1>
-                <p className="text-base sm:text-lg lg:text-xl text-slate-600 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-base lg:text-xl text-slate-600 font-medium max-w-xl mx-auto md:mx-0 leading-relaxed">
                   Advanced automated testing with 99.9% accuracy. Experience seamless health checkups with Lucknow's most trusted pathology team.
                 </p>
               </div>
 
-              <form onSubmit={handleSearch} className="max-w-md mx-auto lg:mx-0 relative">
+              <form onSubmit={handleSearch} className="max-w-md mx-auto md:mx-0 relative">
                 <div className="relative group">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <Search className="h-5 w-5 text-slate-400 group-focus-within:text-primary transition-colors" />
@@ -123,7 +123,7 @@ const Home: React.FC = () => {
                 </div>
               </form>
               
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
                 <Button variant="whatsapp" className="w-full sm:w-auto px-8 shadow-xl shadow-green-500/20 py-3.5 sm:py-4" onClick={() => openBooking('Hero WhatsApp')}>
                   Book Appointment
                 </Button>
@@ -134,12 +134,12 @@ const Home: React.FC = () => {
               </div>
             </div>
             
-            <div className="relative mt-8 lg:mt-0">
+            <div className="relative mt-8 md:mt-0">
               <div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-8 sm:border-[12px] border-white group">
                 <LazyImage 
                   src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769169585/IMG_8929.JPG_y8m2o9.jpg" 
                   alt="Laboratory Excellence" 
-                  className="w-full aspect-[4/5] lg:aspect-square object-cover"
+                  className="w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-square object-cover"
                 />
                 <div className="absolute bottom-6 left-6 right-6 bg-white/70 backdrop-blur-md p-5 rounded-2xl border border-white/50">
                   <div className="flex items-center gap-4">
@@ -167,11 +167,49 @@ const Home: React.FC = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PACKAGES.filter(p => p.isPopular).map(pkg => (
               <PackageCard key={pkg.id} pkg={pkg} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
+      <section className="py-20 lg:py-32 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-6">Why Choose National Diagnostic?</h2>
+            <p className="text-slate-600 text-lg">We combine advanced technology with a patient-first approach to deliver excellence in healthcare.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {[
+              { icon: <ShieldCheck className="text-blue-500" />, title: "NABL Standards", desc: "Strict adherence to international quality protocols for 100% reliability." },
+              { icon: <Zap className="text-orange-500" />, title: "Fast Reporting", desc: "Automated processing ensures most reports are delivered within 24 hours." },
+              { icon: <Truck className="text-green-500" />, title: "Home Collection", desc: "Professional phlebotomists at your doorstep for maximum convenience." },
+              { icon: <Award className="text-purple-500" />, title: "Expert Team", desc: "Highly qualified pathologists and technicians with years of experience." }
+            ].map((feature, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center mb-6">
+                  {React.cloneElement(feature.icon as React.ReactElement, { size: 32 })}
+                </div>
+                <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 lg:py-32 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl lg:text-5xl font-extrabold text-slate-900 mb-4">Trusted by Thousands</h2>
+            <p className="text-slate-600">See what our patients have to say about our services.</p>
+          </div>
+          <TestimonialSlider />
         </div>
       </section>
     </div>
