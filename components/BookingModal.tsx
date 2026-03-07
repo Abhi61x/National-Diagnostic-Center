@@ -34,10 +34,12 @@ Service: ${bookingDetails || 'General Appointment'}`;
     // Open WhatsApp with the pre-filled message
     window.open(`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
 
-    // Simulate API call and show success screen
-    setTimeout(() => {
-      setStep('success');
-    }, 1500);
+    // Move to a manual confirmation step instead of auto-success
+    setStep('confirm-whatsapp');
+  };
+
+  const handleManualConfirm = () => {
+    setStep('success');
   };
 
   return (
@@ -130,8 +132,28 @@ Service: ${bookingDetails || 'General Appointment'}`;
           {step === 'processing' && (
             <div className="py-12 text-center">
               <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
-              <h3 className="text-xl font-semibold text-slate-900">Processing...</h3>
-              <p className="text-slate-500">Scheduling your appointment</p>
+              <h3 className="text-xl font-semibold text-slate-900">Opening WhatsApp...</h3>
+              <p className="text-slate-500">Please wait while we prepare your message.</p>
+            </div>
+          )}
+
+          {step === 'confirm-whatsapp' && (
+            <div className="py-8 text-center animate-in zoom-in-95 duration-200">
+              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <MessageSquare className="w-10 h-10 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-slate-900 mb-2">WhatsApp Open Hua?</h3>
+              <p className="text-slate-600 mb-6 px-4">
+                WhatsApp khul gaya hoga. Message bhejein aur wapas aakar niche click karein.
+              </p>
+              <div className="space-y-3">
+                <Button fullWidth onClick={handleManualConfirm} className="bg-green-600 hover:bg-green-700">
+                  I have sent the message
+                </Button>
+                <Button fullWidth onClick={() => setStep('form')} variant="outline">
+                  Back / Try Again
+                </Button>
+              </div>
             </div>
           )}
 
