@@ -25,7 +25,16 @@ const BookingModal: React.FC = () => {
     e.preventDefault();
     setStep('processing');
     
-    // Simulate API call and SMS sending
+    // Construct the message for the admin
+    const message = `New Booking Request!
+Name: ${name}
+Phone: +91 ${phone}
+Service: ${bookingDetails || 'General Appointment'}`;
+
+    // Open WhatsApp with the pre-filled message
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
+
+    // Simulate API call and show success screen
     setTimeout(() => {
       setStep('success');
     }, 1500);
