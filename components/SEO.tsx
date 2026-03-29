@@ -15,16 +15,21 @@ const SEO: React.FC<SEOProps> = ({ title, description, keywords, schema }) => {
 
   useEffect(() => {
     document.title = title;
-    const updateMeta = (name: string, content: string) => {
-      let element = document.querySelector(`meta[name="${name}"]`);
+    const updateMeta = (name: string, content: string, property: boolean = false) => {
+      const attr = property ? 'property' : 'name';
+      let element = document.querySelector(`meta[${attr}="${name}"]`);
       if (!element) {
         element = document.createElement('meta');
-        element.setAttribute('name', name);
+        element.setAttribute(attr, name);
         document.head.appendChild(element);
       }
       element.setAttribute('content', content);
     };
     updateMeta('description', description);
+    updateMeta('og:description', description, true);
+    updateMeta('og:title', title, true);
+    updateMeta('twitter:description', description);
+    updateMeta('twitter:title', title);
     if (keywords) updateMeta('keywords', keywords);
 
     // Schema injection
