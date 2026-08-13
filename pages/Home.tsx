@@ -135,11 +135,12 @@ const Home: React.FC = () => {
             </div>
             
             <div className="relative mt-8 md:mt-0">
-              <div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-8 sm:border-[12px] border-white group">
+              <div className="relative rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-8 sm:border-[12px] border-white group bg-[#0e5c62]">
                 <LazyImage 
-                  src="https://res.cloudinary.com/djhgkdqwl/image/upload/v1769169585/IMG_8929.JPG_y8m2o9.jpg" 
+                  src="https://res.cloudinary.com/gdlht4be/image/upload/v1786633049/WhatsApp_Image_2026-08-13_at_8.25.05_PM_a55ikj.jpg" 
                   alt="Laboratory Excellence" 
-                  className="w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-square object-cover"
+                  className="w-full aspect-[4/5] md:aspect-[3/4] lg:aspect-square bg-[#0e5c62]"
+                  imgClassName="!object-contain w-full h-full p-2"
                 />
                 <div className="absolute bottom-6 left-6 right-6 bg-white/70 backdrop-blur-md p-5 rounded-2xl border border-white/50">
                   <div className="flex items-center gap-4">
